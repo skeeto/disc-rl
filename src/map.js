@@ -55,6 +55,24 @@ Map.prototype.display = function() {
     });
 };
 
+/**
+ * @returns True if the place is passable by a monster.
+ */
+Map.prototype.isPassable = function(x, y) {
+    var place = this.get(x, y);
+    if (place) {
+        if (place.solid) {
+            return false;
+        } else {
+            return MONSTERS.concat([PLAYER]).every(function(m) {
+                return !(m.x === x && m.y === y);
+            });
+        }
+    } else {
+        return false;
+    }
+};
+
 /* Generators */
 
 Map.random = function(seed, w, h) {

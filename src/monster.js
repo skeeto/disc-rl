@@ -29,8 +29,14 @@ Monster.prototype.move = function(x, y) {
 };
 
 Monster.prototype.change = function(dx, dy) {
-    this.x += dx;
-    this.y += dy;
+    var x = this.x + dx;
+    var y = this.y + dy;
+    if (MAP.isPassable(x, y)) {
+        this.move(x, y);
+        return true;
+    } else {
+        return false;
+    }
 };
 
 /* The player "monster" */
