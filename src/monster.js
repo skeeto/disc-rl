@@ -15,8 +15,7 @@ Monster.prototype.display = function() {
 };
 
 Monster.prototype.toString = function() {
-    return '[object ' + this.type + ' ' + this.name +
-        ' (' + this.x + ', ' + this.y + ')]';
+    return this.name || 'the ' + this.type;
 };
 
 Monster.prototype.move = function(x, y) {
@@ -35,12 +34,35 @@ Monster.prototype.change = function(dx, dy) {
     }
 };
 
+Monster.prototype.damage = function(damage) {
+    this.hp -= damage;
+    // XXX handle death
+};
+
+function bonus(stat) {
+    return (stat - 10) / 2;
+}
+
 /**
  * Perform a melee attack on a target.
  * @param {Monster} target
  */
 Monster.prototype.melee = function(target) {
-    // XXX
+    var roll = d20();
+    var str = bonus(this.strength);
+    var tdex = bonus(target.dexterity);
+    var damage = Math.max(0, this.weapon() + str);
+    var qualifier = ' ';
+    if (roll === 20) {
+        damage *= 2;
+        qualifier = 'critically ';
+    }
+    if (roll === 20 || roll + str > 10 + tdex + target.armor) {
+        target.damage(damage);
+        log('%s %s hits %s for %d damage.', this, qualifier, target, damage);
+    } else {
+        log('%s misses %s.', this, target);
+    }
 };
 
 /**
