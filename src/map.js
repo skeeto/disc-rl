@@ -43,10 +43,10 @@ Map.prototype.get = function(x, y) {
     }
 };
 
-Map.prototype.display = function(x, y) {
+Map.prototype.display = function() {
     var that = this;
-    tiles.visit(function(tile, tx, ty) {
-        var place = that.get(x + tx, y + ty);
+    tiles.visit(function(tile, x, y) {
+        var place = that.get(x, y);
         var type = place ? place.toString() : null;
         tile.set(type);
     });

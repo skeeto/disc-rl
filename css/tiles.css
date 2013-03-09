@@ -2,6 +2,14 @@
     content: '@'
 }
 
+.bot {
+    color: pink;
+}
+
+.bot:after {
+    content: 'x'
+}
+
 .floor {
     background: #44f;
 }

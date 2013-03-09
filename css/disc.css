@@ -6,7 +6,7 @@ body {
 .tile {
     width: 31px;
     height: 31px;
-    font-size: 28px;
+    font-size: 25px;
     text-align: center;
     overflow: hidden;
     position: absolute;
