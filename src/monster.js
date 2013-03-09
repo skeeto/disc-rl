@@ -28,6 +28,11 @@ Monster.prototype.move = function(x, y) {
     this.y = y;
 };
 
+Monster.prototype.change = function(dx, dy) {
+    this.x += dx;
+    this.y += dy;
+};
+
 /* The player "monster" */
 
 function Player(x, y, name) {
