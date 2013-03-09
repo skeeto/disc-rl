@@ -1,12 +1,7 @@
 var SIZE = 15;
 var TILESIZE = 32;
 
-var $log = $('#log');
 var $map = $('#map');
-
-function log(message) {
-    $log.append($('<span/>').attr({'class': 'message'}).text(message));
-}
 
 function Tile($tile) {
     this.$tile = $tile;

@@ -35,12 +35,15 @@ body {
 }
 
 #log {
+    font-size: 14px;
     margin: 5px 0;
     border: 1px solid gray;
     width: 459px;
     padding: 10px;
     background: white;
     display: inline-block;
+    overflow-y: scroll;
+    height: 84px;
 }
 
 #stats {
@@ -54,6 +57,5 @@ body {
 }
 
 .message {
-    font-size: 14px;
     display: block;
 }
