@@ -2,7 +2,7 @@
 log('Greetings, program.');
 
 /* Generate a sample map. */
-MAP = Map.random('disc-rl', 24, 24, 'wall', 'floor', 'floor');
+MAP = Map.random('disc-rl', 24, 24, Wall, Floor, Floor);
 PLAYER.move(0, 1);
 MONSTERS.push(new Monster(5, 1, 'bot'));
 

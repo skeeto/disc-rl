@@ -1,19 +1,6 @@
 /**
- * Exports: Place, Map, MAP
+ * Exports: Map, MAP
  */
-
-/**
- * @constructor
- */
-function Place() {
-    this.type = null;
-    this.items = [];
-    this.solid = false;
-}
-
-Place.prototype.toString = function() {
-    return this.type;
-};
 
 /**
  * @constructor
@@ -32,7 +19,10 @@ function Map(w, h) {
 Map.prototype.visit = function(f) {
     for (var x = 0; x < this.grid.length; x++) {
         for (var y = 0; y < this.grid[x].length; y++) {
-            f(this.grid[x][y], x, y);
+            var place = f(this.grid[x][y], x, y);
+            if (place) {
+                this.grid[x][y] = place;
+            }
         }
     }
     return this;
@@ -78,8 +68,8 @@ Map.prototype.isPassable = function(x, y) {
 Map.random = function(seed, w, h) {
     var rng = new RNG(seed);
     var types = Array.prototype.slice.call(arguments, 3);
-    var map = new Map(w, h).visit(function(place) {
-        place.type = types[rng.random(types.length)];
+    var map = new Map(w, h).visit(function() {
+        return new types[rng.random(types.length)];
     });
     return map;
 };
