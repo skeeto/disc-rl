@@ -1,0 +1,59 @@
+body {
+    font-family: sans-serif;
+    background: #222;
+}
+
+.tile {
+    width: 31px;
+    height: 31px;
+    font-size: 28px;
+    text-align: center;
+    overflow: hidden;
+    position: absolute;
+    background: black;
+    color: white;
+    border-top: 1px solid #333;
+    border-left: 1px solid #333;
+}
+
+#container {
+    margin: 0 auto;
+    padding: 0;
+    width: 850px;
+    position: relative;
+}
+
+#map {
+    width: 480px;
+    height: 480px;
+    background: red;
+    display: inline-block;
+    vertical-align: top;
+    position: relative;
+    border-right: 1px solid #333;
+    border-bottom: 1px solid #333;
+}
+
+#log {
+    margin: 5px 0;
+    border: 1px solid gray;
+    width: 458px;
+    padding: 10px;
+    background: white;
+    display: inline-block;
+}
+
+#stats {
+    width: 360px;
+    border: 1px solid gray;
+    height: 550px;
+    position: absolute;
+    left: 485px;
+    top: 0px;
+    background: lightgray;
+}
+
+.message {
+    font-size: 14px;
+    display: block;
+}

@@ -1,0 +1,15 @@
+.player:after {
+    content: '@'
+}
+
+.floor {
+    background: #444;
+}
+
+.floor:after {
+    content: '.'
+}
+
+.wall {
+    background: black;
+}
