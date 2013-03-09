@@ -31,6 +31,9 @@ var tiles = [];
 tiles.SIZE = 15;
 
 /** @const */
+tiles.RADIUS = Math.floor(tiles.SIZE / 2);
+
+/** @const */
 tiles.TILESIZE = 32;
 
 /* Initialize tiles. */
@@ -57,7 +60,7 @@ tiles.TILESIZE = 32;
 tiles.visit = function(f) {
     for (var y = 0; y < tiles.length; y++) {
         for (var x = 0; x < tiles[y].length; x++) {
-            f(this[x][y], x, y);
+            f(this[x][y], x - tiles.RADIUS, y - tiles.RADIUS);
         }
     }
 };
