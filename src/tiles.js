@@ -1,3 +1,6 @@
+/**
+ * @constructor
+ */
 function Tile($tile) {
     this.$tile = $tile;
     this.types = [];
@@ -21,8 +24,13 @@ Tile.prototype.is = function(type) {
     return this.types.indexOf(type) >= 0;
 };
 
+/** @namespace */
 var tiles = [];
+
+/** @const */
 tiles.SIZE = 15;
+
+/** @const */
 tiles.TILESIZE = 32;
 
 /* Initialize tiles. */
@@ -54,12 +62,12 @@ tiles.visit = function(f) {
     }
 };
 
+/**
+ * Set all tiles to a given type.
+ * @param [type]
+ */
 tiles.clear = function(type) {
     this.visit(function(tile) {
         tile.set(type);
     });
 };
-
-tiles.visit(function(t) {
-    t.set(Math.random() < 0.5 ? 'floor' : 'wall');
-});
