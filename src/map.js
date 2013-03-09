@@ -46,17 +46,27 @@ Map.prototype.display = function() {
 };
 
 /**
- * @returns True if the place is passable by a monster.
+ * @returns the monster at the position.
+ */
+
+Map.prototype.monsterAt = function(x, y) {
+    var monsters = MONSTERS.concat([PLAYER]);
+    for (var i = 0; i < monsters.length; i++) {
+        if (monsters[i].isAt(x, y)) return monsters[i];
+    }
+    return undefined;
+};
+
+/**
+ * @returns true if the place is passable by a monster.
  */
 Map.prototype.isPassable = function(x, y) {
     var place = this.get(x, y);
     if (place) {
-        if (place.solid) {
+        if (place.solid || this.monsterAt(x, y)) {
             return false;
         } else {
-            return MONSTERS.concat([PLAYER]).every(function(m) {
-                return !(m.x === x && m.y === y);
-            });
+            return true;
         }
     } else {
         return false;

@@ -4,14 +4,10 @@
 
 var MONSTERS = [];
 
-var NAME_DEFAULT = NameGen.compile("sV<i|v>", true);
-var NAME_PLAYER = NameGen.compile("sV|Bvs", true);
-
-function Monster(x, y, type, name) {
+function Monster(x, y, name) {
     this.x = x || 0;
     this.y = y || 0;
-    this.type = type || 'bot';
-    this.name = name || NAME_DEFAULT.toString();
+    this.name = name || null;
 }
 
 Monster.prototype.display = function() {
@@ -39,12 +35,17 @@ Monster.prototype.change = function(dx, dy) {
     }
 };
 
-/* The player "monster" */
+/**
+ * Perform a melee attack on a target.
+ * @param {Monster} target
+ */
+Monster.prototype.melee = function(target) {
+    // XXX
+};
 
-function Player(x, y, name) {
-    Monster.call(this, x, y, 'player', name || NAME_PLAYER.toString());
-}
-
-Player.prototype = Object.create(Monster.prototype);
-
-var PLAYER = new Player(0, 0, 'player');
+/**
+ * @returns true if the monster is at x, y.
+ */
+Monster.prototype.isAt = function(x, y) {
+    return this.x === x && this.y === y;
+};
