@@ -1,4 +1,11 @@
+/**
+ * Exports: Monster, MONSTERS, PLAYER
+ */
+
+var MONSTERS = [];
+
 var NAME_DEFAULT = NameGen.compile("sV<i|v>", true);
+var NAME_PLAYER = NameGen.compile("sV|Bvs", true);
 
 function Monster(x, y, type, name) {
     this.x = x || 0;
@@ -8,10 +15,25 @@ function Monster(x, y, type, name) {
 }
 
 Monster.prototype.display = function() {
-    tiles.add(this.x, this.y, this.type);
+    TILES.add(this.x, this.y, this.type);
 };
 
 Monster.prototype.toString = function() {
     return '[object ' + this.type + ' ' + this.name +
         ' (' + this.x + ', ' + this.y + ')]';
 };
+
+Monster.prototype.move = function(x, y) {
+    this.x = x;
+    this.y = y;
+};
+
+/* The player "monster" */
+
+function Player(x, y, name) {
+    Monster.call(this, x, y, 'player', name || NAME_PLAYER.toString());
+}
+
+Player.prototype = Object.create(Monster.prototype);
+
+var PLAYER = new Player(0, 0, 'player');

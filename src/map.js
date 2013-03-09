@@ -1,9 +1,12 @@
 /**
+ * Exports: Place, Map, MAP
+ */
+
+/**
  * @constructor
  */
 function Place() {
     this.type = null;
-    this.monster = null;
     this.items = [];
     this.solid = false;
 }
@@ -45,7 +48,7 @@ Map.prototype.get = function(x, y) {
 
 Map.prototype.display = function() {
     var that = this;
-    tiles.visit(function(tile, x, y) {
+    TILES.visit(function(tile, x, y) {
         var place = that.get(x, y);
         var type = place ? place.toString() : null;
         tile.set(type);
@@ -67,3 +70,9 @@ Map.columns = function(w, h) {
     var map = new Map(w, h);
     return map;
 };
+
+Map.empty = function() {
+    new Map(0, 0);
+};
+
+var MAP = Map.empty();

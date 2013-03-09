@@ -1,13 +1,20 @@
+/* Test the message log. */
 log('Greetings, program.');
 
-var map = Map.random('disc-rl', 24, 24, 'wall', 'floor', 'floor');
-var monsters = [];
-var player = new Monster(0, 1, 'player');
+/* Generate a sample map. */
+MAP = Map.random('disc-rl', 24, 24, 'wall', 'floor', 'floor');
+PLAYER.move(0, 1);
+MONSTERS.push(new Monster(5, 1, 'bot'));
 
-monsters.push(new Monster(5, 1, 'bot'));
-
+/**
+ * Update the entire game display.
+ */
 function display() {
-    map.display();
-    monsters.map(withThis('display'));
-    player.display();
+    MAP.display();
+    MONSTERS.map(withThis('display'));
+    PLAYER.display();
 }
+
+/* Draw a sample display. */
+FOCUS.on(PLAYER);
+display();

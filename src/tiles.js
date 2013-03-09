@@ -1,4 +1,8 @@
 /**
+ * Exports: TILES, Tile
+ */
+
+/**
  * @constructor
  */
 function Tile($tile) {
@@ -44,27 +48,30 @@ Tile.prototype.add = function(type) {
 };
 
 /** @namespace */
-var tiles = [];
+var TILES = {};
+
+/** 2D array of all tiles. */
+TILES.grid = [];
 
 /** @const */
-tiles.SIZE = 15;
+TILES.SIZE = 15;
 
 /** @const */
-tiles.RADIUS = Math.floor(tiles.SIZE / 2);
+TILES.RADIUS = Math.floor(TILES.SIZE / 2);
 
 /** @const */
-tiles.TILESIZE = 32;
+TILES.PIXELS = 32;
 
 /* Initialize tiles. */
 (function() {
     var $map = $('#map');
-    for (var x = 0; x < tiles.SIZE; x++) {
+    for (var x = 0; x < TILES.SIZE; x++) {
         var row = [];
-        tiles.push(row);
-        for (var y = 0; y < tiles.SIZE; y++) {
+        TILES.grid.push(row);
+        for (var y = 0; y < TILES.SIZE; y++) {
             var $tile = $('<div/>').attr({'class': 'tile'}).css({
-                'left': (x * tiles.TILESIZE) + 'px',
-                'top': (y * tiles.TILESIZE) + 'px'
+                'left': (x * TILES.PIXELS) + 'px',
+                'top': (y * TILES.PIXELS) + 'px'
             });
             row.push(new Tile($tile));
             $map.append($tile);
@@ -73,15 +80,15 @@ tiles.TILESIZE = 32;
 }());
 
 /**
- * Visit each tiles with a function.
+ * Visit each tile with a function.
  * @param f This function is called as f(tile, x, y).
  */
-tiles.visit = function(f) {
-    for (var y = 0; y < tiles.length; y++) {
-        for (var x = 0; x < tiles[y].length; x++) {
-            f(this[x][y],
-              F.x + x - tiles.RADIUS,
-              F.y + y - tiles.RADIUS);
+TILES.visit = function(f) {
+    for (var y = 0; y < TILES.grid.length; y++) {
+        for (var x = 0; x < this.grid[y].length; x++) {
+            f(this.grid[x][y],
+              FOCUS.x + x - TILES.RADIUS,
+              FOCUS.y + y - TILES.RADIUS);
         }
     }
 };
@@ -90,7 +97,7 @@ tiles.visit = function(f) {
  * Set all tiles to a given type.
  * @param [type]
  */
-tiles.clear = function(type) {
+TILES.clear = function(type) {
     this.visit(function(tile) {
         tile.set(type);
     });
@@ -99,7 +106,7 @@ tiles.clear = function(type) {
 /* World coordinates. */
 
 /** World display focus. */
-var F = {
+var FOCUS = {
     x: 0,
     y: 0,
     set: function(x, y) {
@@ -122,18 +129,24 @@ var F = {
     right: function() {
         this.x++;
         return this;
+    },
+    on: function(thing) {
+        this.x = thing.x;
+        this.y = thing.y;
     }
 };
 
-tiles.get = function(x, y) {
-    if (this[x + tiles.RADIUS - F.x]) {
-        return this[x + tiles.RADIUS - F.x][y + tiles.RADIUS - F.y];
+TILES.get = function(x, y) {
+    if (this.grid[x + TILES.RADIUS - FOCUS.x]) {
+        var wx = x + TILES.RADIUS - FOCUS.x;
+        var wy = y + TILES.RADIUS - FOCUS.y;
+        return this.grid[wx][wy];
     } else {
         return undefined;
     }
 };
 
-tiles.set = function(x, y, type) {
+TILES.set = function(x, y, type) {
     var tile = this.get(x, y);
     if (tile) {
         tile.set(type);
@@ -141,7 +154,7 @@ tiles.set = function(x, y, type) {
     return this;
 };
 
-tiles.add = function(x, y, type) {
+TILES.add = function(x, y, type) {
     var tile = this.get(x, y);
     if (tile) {
         tile.add(type);
@@ -149,7 +162,7 @@ tiles.add = function(x, y, type) {
     return this;
 };
 
-tiles.remove = function(x, y, type) {
+TILES.remove = function(x, y, type) {
     var tile = this.get(x, y);
     if (tile) {
         tile.remove(type);
