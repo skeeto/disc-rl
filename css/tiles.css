@@ -3,13 +3,9 @@
 }
 
 .floor {
-    background: #444;
-}
-
-.floor:after {
-    content: '.'
+    background: #44f;
 }
 
 .wall {
-    background: black;
+    background: #003;
 }
