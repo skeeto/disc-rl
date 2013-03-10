@@ -6,12 +6,20 @@
     content: '@'
 }
 
+.Floor {
+    background: #44f;
+}
+
+.Wall {
+    background: #003;
+}
+
 .Bot {
     color: pink;
 }
 
 .Bot:after {
-    content: 'x'
+    content: 'x';
 }
 
 .Script {
@@ -19,13 +27,13 @@
 }
 
 .Script:after {
-    content: 's'
+    content: 's';
 }
 
-.Floor {
-    background: #44f;
+.Adware {
+    color: red;
 }
 
-.Wall {
-    background: #003;
+.Adware:after {
+    content: 'a';
 }

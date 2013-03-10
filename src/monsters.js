@@ -109,3 +109,10 @@ M('Script', {
     mind: 2,
     name: 'id.(sh|bat|js)'
 });
+
+M('Adware', {
+    level: 2,
+    strength: 8,
+    dexterity: 8,
+    mind: 4
+});
