@@ -14,10 +14,7 @@ function Map(w, h) {
             row.push(new Place());
         }
     }
-    var that = this;
-    this.fov = new ROT.FOV.PreciseShadowcasting(function(x, y) {
-        return !that.isSolid(x, y);
-    });
+    this.visible = {};
 }
 
 Map.prototype.visit = function(f) {
@@ -52,18 +49,29 @@ Map.prototype.markSeen = function(x, y) {
     }
 };
 
-Map.prototype.display = function() {
+Map.prototype.computeVisible = function(player) {
     var that = this;
-    var visible = {};
+    this.fov = new ROT.FOV.PreciseShadowcasting(function(x, y) {
+        return !that.isSolid(x, y);
+    });
     var r = display.RADIUS;
-    this.fov.compute(world.focus.x, world.focus.y, r, function(x, y) {
-        visible[[x, y]] = true;
+    that.visible = {};
+    this.fov.compute(player.x, player.y, r, function(x, y) {
+        that.visible[[x, y]] = true;
         that.markSeen(x, y);
     });
+};
+
+Map.prototype.isVisible = function(x, y) {
+    return this.visible[[x,y]];
+};
+
+Map.prototype.display = function() {
+    var that = this;
     display.visit(function(tile, x, y) {
         var place = that.get(x, y);
         var type = place ? place.toString() : null;
-        if (visible[[x, y]]) {
+        if (that.visible[[x, y]]) {
             tile.set(type);
         } else if (place && place.seen) {
             tile.set('unseen', type);

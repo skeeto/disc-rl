@@ -16,6 +16,7 @@ function World(map) {
 }
 
 World.prototype.display = function() {
+    this.map.computeVisible(this.player);
     this.map.display();
     this.monsters.forEach(withThis('display'));
     this.player.display();
@@ -65,6 +66,10 @@ World.prototype.isSolid = function(x, y) {
  */
 World.prototype.isPassable = function(x, y) {
     return !this.isSolid(x, y) && !this.monsterAt(x, y);
+};
+
+World.prototype.isVisible = function(x, y) {
+    return this.map.isVisible(x, y);
 };
 
 /**

@@ -10,7 +10,9 @@ function Monster(x, y, name) {
 }
 
 Monster.prototype.display = function() {
-    display.add(this.x, this.y, this.type);
+    if (world.isVisible(this.x, this.y)) {
+        display.add(this.x, this.y, this.type);
+    }
 };
 
 Monster.prototype.toString = function() {
