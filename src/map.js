@@ -86,8 +86,13 @@ Map.prototype.display = function() {
 Map.random = function(seed, w, h) {
     var rng = new RNG(seed);
     var types = Array.prototype.slice.call(arguments, 3);
-    var map = new Map(w, h).visit(function() {
-        return new types[rng.random(types.length)];
+    var map = new Map(w, h).visit(function(place, x, y) {
+        if (x === 0 || x === w - 1 ||
+            y === 0 || y === h - 1) {
+            return new types[0];
+        } else {
+            return new types[rng.random(types.length)];
+        }
     });
     return map;
 };
