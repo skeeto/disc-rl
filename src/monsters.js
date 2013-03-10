@@ -1,5 +1,19 @@
 var Mindex = {};
 
+Mindex.add = function (type) {
+    if (!this[type.prototype.level]) {
+        this[type.prototype.level] = [];
+    }
+    this[type.prototype.level].push(type);
+};
+
+Mindex.random = function(level) {
+    while (level > 0 && !this[level]) {
+        level--;
+    }
+    return this[Math.max(1, level)].random();
+};
+
 var Mdefaults = {
     level: 1,
     strength: 10,
@@ -34,7 +48,9 @@ function M(className, props, constructor) {
     m.prototype = Object.create(Monster.prototype);
     m.prototype.type = className;
     $.extend(m.prototype, Mdefaults, props);
-    if (!m.prototype.player) Mindex[m.prototype.level] = m;
+    if (!m.prototype.player) {
+        Mindex.add(m);
+    }
     return (this[className] = m);
 }
 

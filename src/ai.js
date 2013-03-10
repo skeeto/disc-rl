@@ -28,7 +28,7 @@ AI.huntMelee = function(callback) {
         path.push({x: x, y: y});
     });
     if (path.length < 2) {
-        debug(100, 'AI.huntMelee: monster is stuck');
+        //debug(100, 'AI.huntMelee: monster is stuck');
     } else if (path.length === 2) {
         this.melee(player);
     } else if (path.length > 2) {

@@ -9,6 +9,9 @@ function World(map) {
     this.monsters = [];
     this.player = new Player(0, 0);
     this.time = 0;
+    this.spawnrate = 250;
+    this.nextspawn = 0;
+    this.level = 1;
     this.focus = {
         x: 0,
         y: 0
@@ -74,7 +77,7 @@ World.prototype.isVisible = function(x, y) {
 
 World.prototype.spawn = function(type) {
     var p = this.map.random('solid', false);
-    this.monsters.push(new type(p.x, p.y));
+    if (!this.monsterAt(p.x, p.y)) this.monsters.push(new type(p.x, p.y));
 };
 
 /**
@@ -98,28 +101,23 @@ World.prototype.remove = function(monster) {
 World.prototype.run = function() {
     if (!this.active) return;
     var all = [this.player].concat(this.monsters);
-    var wait = all.reduce(function(max, m) {
+    var wait = Math.max(0, all.reduce(function(max, m) {
         return Math.min(max, m.timer);
-    }, Infinity);
+    }, Infinity));
     var movers = all.filter(function(m) {
         m.timer -= wait;
         return m.timer <= 0;
     });
     world.time += wait;
 
-    var that = this;
-    function go() {
-        if (!that.active) return;
-        if (movers.length > 0) {
-            var monster = movers.pop();
-            monster.timer = Math.max(20 - bonus(monster.dexterity), 1);
-            monster.act(go);
-        } else {
-            world.run();
-        }
+    while (world.time > this.nextspawn) {
+        this.nextspawn += R.exponential() * this.spawnrate;
+        this.spawn(Mindex.random(this.level));
     }
 
-    go();
+    var mover = movers.pop();
+    mover.timer = Math.max(20 - bonus(mover.dexterity), 1);
+    mover.act(this.run.bind(this));
 };
 
 World.prototype.gameOver = function() {
