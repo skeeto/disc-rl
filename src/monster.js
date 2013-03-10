@@ -34,7 +34,10 @@ Monster.prototype.change = function(dx, dy) {
 
 Monster.prototype.damage = function(damage) {
     this.hp -= damage;
-    // XXX handle death
+    if (this.hp <= 0) {
+        log('%s has been killed', this);
+        world.remove(this);
+    }
 };
 
 function bonus(stat) {
@@ -56,8 +59,8 @@ Monster.prototype.melee = function(target) {
         qualifier = 'critically ';
     }
     if (roll === 20 || roll + str > 10 + tdex + target.armor) {
-        target.damage(damage);
         log('%s %s hits %s for %d damage.', this, qualifier, target, damage);
+        target.damage(damage);
     } else {
         log('%s misses %s.', this, target);
     }

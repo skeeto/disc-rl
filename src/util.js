@@ -4,3 +4,9 @@ function withThis(f) {
         return object[f].apply(object, args);
     };
 }
+
+function capitalize(string) {
+    return string.replace(/^./, function(c) {
+        return c.toUpperCase();
+    });
+};

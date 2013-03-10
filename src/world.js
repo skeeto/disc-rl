@@ -45,18 +45,29 @@ World.prototype.monsterAt = function(x, y) {
     return undefined;
 };
 
+World.prototype.isSolid = function(x, y) {
+    var place = this.map.get(x, y);
+    return !place || place.solid;
+};
+
 /**
  * @returns true if the place is passable by a monster.
  */
 World.prototype.isPassable = function(x, y) {
-    var place = this.map.get(x, y);
-    if (place) {
-        if (place.solid || this.monsterAt(x, y)) {
-            return false;
-        } else {
-            return true;
-        }
+    return !this.isSolid() && !this.monsterAt(x, y);
+};
+
+/**
+ * Remove a monster from the world.
+ * @param {Monster} monster
+ */
+World.prototype.remove = function(monster) {
+    if (monster === this.player) {
+        log('Game over!');
+        // XXX handle game over
     } else {
-        return false;
+        this.monsters = this.monsters.filter(function(m) {
+            return m !== monster;
+        });
     }
 };
