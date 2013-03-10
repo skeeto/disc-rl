@@ -84,6 +84,7 @@ body {
 
 .stat .value {
     display: inline-block;
+    font-weight: bold;
 }
 
 #health {
