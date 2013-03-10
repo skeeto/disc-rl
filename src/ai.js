@@ -9,14 +9,28 @@ AI.randomWalk =  function(callback) {
 AI.huntMelee = function(callback) {
     var path = [];
     var player = world.player;
-    var visible = complement(world.isSolid.bind(world));
+    var that = this;
+    var visible = function(x, y) {
+        if (world.isSolid(x, y)) {
+            return false;
+        } else {
+            var dist = Math.max(Math.abs(x - that.x), Math.abs(y - that.y));
+            if (dist === 1) {
+                return !world.monsterAt(x, y);
+            } else {
+                return true;
+            }
+        }
+    };
     var astar = new ROT.Path.AStar(player.x, player.y, visible);
     astar.compute(this.x, this.y, function(x, y) {
         path.push({x: x, y: y});
     });
-    if (path.length === 2) {
+    if (path.length < 2) {
+        debug(100, 'AI.huntMelee: monster is stuck');
+    } else if (path.length === 2) {
         this.melee(player);
-    } else {
+    } else if (path.length > 2) {
         this.tryMove(path[1].x, path[1].y);
     }
     callback();
