@@ -63,15 +63,24 @@ Monster.prototype.melee = function(target) {
     var tdex = bonus(target.dexterity);
     var damage = Math.max(0, this.weapon() + str);
     var qualifier = ' ';
+    var hits = 'hits';
+    var misses = 'misses';
+    var name = this.toString();
+    if (this.player) {
+        name = 'you';
+        hits = 'hit';
+        misses = 'miss';
+    }
     if (roll === 20) {
         damage *= 2;
         qualifier = 'critically ';
     }
     if (roll === 20 || roll + str > 10 + tdex + target.armor) {
-        log('%s %s hits %s for %d damage.', this, qualifier, target, damage);
+        log('%s %s %s %s for %d damage.', name, qualifier, hits,
+            target.player ? 'you': target, damage);
         target.damage(damage);
     } else {
-        log('%s misses %s.', this, target);
+        log('%s %s %s.', this, misses, target.player ? 'you' : target);
     }
 };
 
