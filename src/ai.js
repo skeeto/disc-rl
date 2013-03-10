@@ -4,6 +4,7 @@ var AI = AI || {};
 
 AI.randomWalk =  function(callback) {
     this.moveBy(R.random(-1, 2), R.random(-1, 2));
+    callback();
 };
 
 AI.huntMelee = function(callback) {
