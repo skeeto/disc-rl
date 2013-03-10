@@ -2,7 +2,6 @@
 
  * map generation
    * connectedness
-   * A*
    * more tiles
  * multiple dungeon levels
  * monster AI
@@ -10,7 +9,6 @@
  * monster spawning
  * ranged attacks
  * spells
- * FOV
  * equipment
    * inventory
    * equip
