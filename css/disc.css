@@ -50,6 +50,10 @@ body {
     display: block;
 }
 
+.debug {
+    color: red;
+}
+
 #stats {
     width: 200px;
     border: 1px solid gray;
