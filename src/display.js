@@ -139,6 +139,8 @@ display.remove = function(x, y, type) {
     return this;
 };
 
+display.minimap = $('#minimap').get(0).getContext('2d');
+
 /* Stats components. */
 display.$name = $('#name');
 display.$level = $('#level');

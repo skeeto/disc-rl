@@ -50,13 +50,22 @@ body {
     color: red;
 }
 
+#minimap {
+    width: 320px;
+    height: 320px;
+    border: 1px solid gray;
+    position: absolute;
+    top: 0px;
+    left: 485px;
+}
+
 #stats {
-    width: 200px;
+    width: 300px;
     border: 1px solid gray;
     /* height: 570px; */
     position: absolute;
     left: 485px;
-    top: 0px;
+    top: 330px;
     background: lightblue;
     padding: 10px;
 }

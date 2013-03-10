@@ -2,6 +2,8 @@
  * Exports: Map
  */
 
+var MINIMAP_RADIUS = 40;
+
 /**
  * @constructor
  */
@@ -49,6 +51,14 @@ Map.prototype.computeVisible = function(player) {
     });
 };
 
+Map.prototype.visit = function(f) {
+    var that = this;
+    Object.keys(this.grid).forEach(function(key) {
+        var pos = key.split(',').map(parseFloat);
+        f(that.grid[key], pos[0], pos[1]);
+    });
+};
+
 Map.prototype.isVisible = function(x, y) {
     return this.visible[[x,y]];
 };
@@ -85,6 +95,41 @@ Map.prototype.display = function() {
             tile.set();
         }
     });
+
+    /* Minimap */
+    var ctx = display.minimap;
+    ctx.globalAlpha = 1;
+    ctx.fillStyle = 'black';
+    var w = ctx.canvas.width;
+    var h = ctx.canvas.height;
+    var s = Math.min(w, h) / (MINIMAP_RADIUS * 2 + 1);
+    var cx = world.player.x;
+    var cy = world.player.y;
+    ctx.fillRect(0, 0, w, h);
+    this.visit(function(place, x, y) {
+        if (place.seen) {
+            var dx = Math.abs(cx - x);
+            var dy = Math.abs(cy - y);
+            if (dx <= MINIMAP_RADIUS && dy <= MINIMAP_RADIUS) {
+                if (place.solid) {
+                    ctx.fillStyle = 'blue';
+                } else {
+                    ctx.fillStyle = 'lightgray';
+                }
+                if (that.isVisible(x, y)) {
+                    ctx.globalAlpha = 1;
+                } else {
+                    ctx.globalAlpha = 0.5;
+                }
+                ctx.fillRect((x - cx) * s + MINIMAP_RADIUS * s,
+                             (y - cy) * s + MINIMAP_RADIUS * s,
+                             s, s);
+            }
+        }
+    });
+    ctx.fillStyle = 'red';
+    ctx.globalAlpha = 1;
+    ctx.fillRect(MINIMAP_RADIUS * s, MINIMAP_RADIUS * s, s, s);
 };
 
 /* Generators */
