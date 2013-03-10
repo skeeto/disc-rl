@@ -58,8 +58,7 @@ World.prototype.monsterAt = function(x, y) {
 };
 
 World.prototype.isSolid = function(x, y) {
-    var place = this.map.get(x, y);
-    return !place || place.solid;
+    return this.map.isSolid(x, y);
 };
 
 /**
