@@ -48,11 +48,8 @@ Monster.prototype.damage = function(damage) {
     return false;
 };
 
-/**
- * Random walker.
- */
 Monster.prototype.act = function(callback) {
-    this.moveBy(R.random(-1, 2), R.random(-1, 2));
+    // Do nothing
     callback();
 };
 

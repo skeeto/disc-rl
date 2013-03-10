@@ -55,10 +55,12 @@ M('Bot', {
     mind: 2
 });
 
+Bot.prototype.act = AI.randomWalk;
+
 M('Script', {
     level: 1,
-    strength: 2,
-    dexterity: 2,
+    strength: 4,
+    dexterity: 4,
     mind: 2,
     name: 'id.(sh|bat|js)'
 });
