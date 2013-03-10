@@ -28,6 +28,8 @@ World.prototype.display = function() {
     /* Stats */
     display.$name.text(this.player.name);
     display.$level.text(this.player.level);
+    display.$experience.text(this.player.experience +
+                             ' / ' + this.player.nextLevel());
     display.$health.text(this.player.hp + ' / ' + this.player.maxhp);
     display.$mana.text(this.player.mp + ' / ' + this.player.maxmp);
     display.$strength.text(this.player.strength);
@@ -92,6 +94,8 @@ World.prototype.remove = function(monster) {
         this.monsters = this.monsters.filter(function(m) {
             return m !== monster;
         });
+        var exp = monster.maxhp + Math.max(monster.dexterity, monster.mind);
+        this.player.addExperience(exp);
     }
 };
 

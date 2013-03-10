@@ -75,7 +75,7 @@ Monster.prototype.melee = function(target) {
         damage *= 2;
         qualifier = 'critically ';
     }
-    if (roll === 20 || roll + str > 10 + tdex + target.armor) {
+    if (roll === 20 || roll + str + this.level > 10 + tdex + target.armor) {
         unimportant('%s %s %s %s for %d damage.', name, qualifier, hits,
                     target.player ? 'you': target, damage);
         target.damage(damage);

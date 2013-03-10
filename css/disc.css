@@ -101,7 +101,7 @@ body {
 
 .stat label {
     display: inline-block;
-    width: 65px;
+    width: 100px;
 }
 
 .stat .value {
