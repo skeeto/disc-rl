@@ -13,6 +13,7 @@ function World(map) {
         x: 0,
         y: 0
     };
+    this.active = true;
 }
 
 World.prototype.display = function() {
@@ -78,8 +79,8 @@ World.prototype.isVisible = function(x, y) {
  */
 World.prototype.remove = function(monster) {
     if (monster === this.player) {
-        log('Game over!');
-        // XXX handle game over
+        log('You were derezzed.');
+        world.gameOver();
     } else {
         this.monsters = this.monsters.filter(function(m) {
             return m !== monster;
@@ -91,6 +92,7 @@ World.prototype.remove = function(monster) {
  * Run the next world event.
  */
 World.prototype.run = function() {
+    if (!this.active) return;
     var all = [this.player].concat(this.monsters);
     var wait = all.reduce(function(max, m) {
         return Math.min(max, m.timer);
@@ -101,7 +103,9 @@ World.prototype.run = function() {
     });
     world.time += wait;
 
+    var that = this;
     function go() {
+        if (!that.active) return;
         if (movers.length > 0) {
             var monster = movers.pop();
             monster.timer = Math.max(20 - bonus(monster.dexterity), 1);
@@ -112,4 +116,8 @@ World.prototype.run = function() {
     }
 
     go();
+};
+
+World.prototype.gameOver = function() {
+    this.active = false;
 };
