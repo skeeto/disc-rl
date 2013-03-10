@@ -20,7 +20,7 @@ World.prototype.display = function() {
     this.map.computeVisible(this.player);
     this.map.display();
     this.monsters.forEach(withThis('display'));
-    this.player.display();
+    if (this.active) this.player.display();
 
     /* Stats */
     display.$name.text(this.player.name);
@@ -124,4 +124,5 @@ World.prototype.run = function() {
 
 World.prototype.gameOver = function() {
     this.active = false;
+    this.display();
 };
