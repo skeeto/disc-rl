@@ -20,8 +20,10 @@
  * character creation
    * race
    * classes
+ * look-around
 
 ## Stretch goals
 
  * save/load
  * stores/merchants
+ * autoexplore
