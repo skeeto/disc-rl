@@ -5,6 +5,12 @@ function withThis(f) {
     };
 }
 
+function complement(f) {
+    return function() {
+        return !f.apply(this, arguments);
+    }.bind(this);
+}
+
 /**
  * Capitalize the first character of the string.
  */
