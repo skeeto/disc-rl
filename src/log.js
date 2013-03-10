@@ -2,7 +2,7 @@
  * Exports: log
  */
 
-var DEBUG = true;
+var DEBUG = Infinity;
 var _slice = Array.prototype.slice;
 
 var $log = $('#log');
@@ -20,9 +20,9 @@ function log(message) {
     $log.prepend(makeTag(capitalize(text)));
 }
 
-function debug(message) {
-    if (DEBUG) {
-        var text = vsprintf(message, _slice.call(arguments, 1));
+function debug(level, message) {
+    if (level <= DEBUG) {
+        var text = vsprintf(message, _slice.call(arguments, 2));
         $log.prepend(makeTag(text, 'debug'));
     }
 }
