@@ -19,5 +19,9 @@
 }
 
 .Wall {
-    background: #003;
+    background: #005;
+    -webkit-animation-name: flash;
+    -moz-animation-name: flash;
+    -o-animation-name: flash;
+    animation-name: flash;
 }
