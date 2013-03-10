@@ -59,6 +59,10 @@ body {
     color: gray;
 }
 
+.important {
+    color: yellow;
+}
+
 #minimap {
     width: 320px;
     height: 320px;
