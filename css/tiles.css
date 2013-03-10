@@ -2,22 +2,22 @@
     opacity: 0.35;
 }
 
-.player:after {
+.Player:after {
     content: '@'
 }
 
-.bot {
+.Bot {
     color: pink;
 }
 
-.bot:after {
+.Bot:after {
     content: 'x'
 }
 
-.floor {
+.Floor {
     background: #44f;
 }
 
-.wall {
+.Wall {
     background: #003;
 }

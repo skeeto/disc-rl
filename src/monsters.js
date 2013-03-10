@@ -24,7 +24,7 @@ function M(name, props, c) {
         this.mp = this.maxmp;
     };
     m.prototype = Object.create(Monster.prototype);
-    m.prototype.type = name.toLowerCase();
+    m.prototype.type = name;
     $.extend(m.prototype, Mdefaults, props);
     return (this[name] = m);
 }

@@ -19,12 +19,12 @@ Place.prototype.toString = function() {
 /* Types of places. */
 
 function Wall() {
-    Place.call(this, 'wall');
+    Place.call(this, 'Wall');
     this.solid = true;
 }
 Wall.prototype = Object.create(Place.prototype);
 
 function Floor() {
-    Place.call(this, 'floor');
+    Place.call(this, 'Floor');
 }
 Floor.prototype = Object.create(Place.prototype);
