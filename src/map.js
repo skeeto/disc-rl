@@ -105,8 +105,12 @@ Map.random = function(seed, w, h) {
     return map;
 };
 
-Map.columns = function(w, h) {
-    var map = new Map(w, h);
+Map.dungeon = function(w, h) {
+    var gen = new ROT.Map.Digger(w, h);
+    var map = new Map(0, 0);
+    gen.create(function(x, y, value) {
+        map.grid[[x, y]] = value ? new Wall() : new Floor();
+    });
     return map;
 };
 
