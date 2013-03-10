@@ -34,6 +34,10 @@ Monster.prototype.moveBy = function(dx, dy) {
     }
 };
 
+Monster.prototype.tryMove = function(x, y) {
+    return this.moveBy(x - this.x, y - this.y);
+};
+
 Monster.prototype.damage = function(damage) {
     this.hp -= damage;
     if (this.hp <= 0) {
