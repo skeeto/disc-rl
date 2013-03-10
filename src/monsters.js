@@ -33,6 +33,11 @@ M('Player', {}, function() {
     this.name = NameGen.compile("sV|Bvs", true).toString();
 });
 
+Player.prototype.act = function(callback) {
+    controls.enabled = true;
+    controls.callback = callback;
+};
+
 M('Bot', {
     strength: 2,
     dexterity: 2,

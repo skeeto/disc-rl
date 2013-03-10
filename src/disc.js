@@ -8,3 +8,4 @@ world.monsters.push(new Bot(5, 1));
 /* Draw a sample display. */
 world.look();
 world.display();
+world.run();

@@ -6,6 +6,7 @@ function Monster(x, y, name) {
     this.x = x || 0;
     this.y = y || 0;
     this.name = name || null;
+    this.timer = 0;
 }
 
 Monster.prototype.display = function() {
@@ -21,7 +22,7 @@ Monster.prototype.move = function(x, y) {
     this.y = y;
 };
 
-Monster.prototype.change = function(dx, dy) {
+Monster.prototype.moveBy = function(dx, dy) {
     var x = this.x + dx;
     var y = this.y + dy;
     if (world.isPassable(x, y)) {
@@ -40,9 +41,10 @@ Monster.prototype.damage = function(damage) {
     }
 };
 
-function bonus(stat) {
-    return (stat - 10) / 2;
-}
+Monster.prototype.act = function(callback) {
+    this.moveBy(R.random(-1, 2), R.random(-1, 2));
+    callback();
+};
 
 /**
  * Perform a melee attack on a target.

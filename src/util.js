@@ -5,8 +5,18 @@ function withThis(f) {
     };
 }
 
+/**
+ * Capitalize the first character of the string.
+ */
 function capitalize(string) {
     return string.replace(/^./, function(c) {
         return c.toUpperCase();
     });
 };
+
+/**
+ * Compute the modifier from a stat.
+ */
+function bonus(stat) {
+    return (stat - 10) / 2;
+}

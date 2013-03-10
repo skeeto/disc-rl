@@ -61,7 +61,7 @@ World.prototype.isSolid = function(x, y) {
  * @returns true if the place is passable by a monster.
  */
 World.prototype.isPassable = function(x, y) {
-    return !this.isSolid() && !this.monsterAt(x, y);
+    return !this.isSolid(x, y) && !this.monsterAt(x, y);
 };
 
 /**
@@ -77,4 +77,30 @@ World.prototype.remove = function(monster) {
             return m !== monster;
         });
     }
+};
+
+/**
+ * Run the next world event.
+ */
+World.prototype.run = function() {
+    var all = [this.player].concat(this.monsters);
+    var wait = all.reduce(function(max, m) {
+        return Math.max(max, m.timer);
+    }, Infinity);
+    var movers = all.filter(function(m) {
+        m.timer -= wait;
+        return m.timer <= 0;
+    });
+
+    function go() {
+        if (movers.length > 0) {
+            var monster = movers.pop();
+            monster.timer = Math.max(20 - bonus(monster.dexterity), 1);
+            monster.act(go);
+        } else {
+            world.run();
+        }
+    }
+
+    go();
 };
