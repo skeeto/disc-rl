@@ -1,8 +1,6 @@
 /**
- * Exports: Monster, MONSTERS, PLAYER
+ * Exports: Monster
  */
-
-var MONSTERS = [];
 
 function Monster(x, y, name) {
     this.x = x || 0;
@@ -11,7 +9,7 @@ function Monster(x, y, name) {
 }
 
 Monster.prototype.display = function() {
-    TILES.add(this.x, this.y, this.type);
+    display.add(this.x, this.y, this.type);
 };
 
 Monster.prototype.toString = function() {
@@ -26,7 +24,7 @@ Monster.prototype.move = function(x, y) {
 Monster.prototype.change = function(dx, dy) {
     var x = this.x + dx;
     var y = this.y + dy;
-    if (MAP.isPassable(x, y)) {
+    if (world.isPassable(x, y)) {
         this.move(x, y);
         return true;
     } else {
