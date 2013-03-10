@@ -20,6 +20,11 @@ function log(message) {
     $log.prepend(makeTag(capitalize(text)));
 }
 
+function unimportant(message) {
+    var text = vsprintf(message, _slice.call(arguments, 1));
+    $log.prepend(makeTag(capitalize(text), 'unimportant'));
+}
+
 function debug(level, message) {
     if (level <= DEBUG) {
         var text = vsprintf(message, _slice.call(arguments, 2));

@@ -31,23 +31,32 @@ body {
 }
 
 #log {
+    font-family: monospace;
     font-size: 14px;
     margin: 5px 0;
     border: 1px solid gray;
     width: 459px;
     padding: 10px;
-    background: white;
+    background: black;
+    color: lightgray;
     display: inline-block;
     overflow-y: scroll;
     height: 84px;
+    padding: 5px 10px;
 }
 
 .message {
     display: block;
+    margin-top: -2px;
+    padding: 0px;
 }
 
 .debug {
     color: red;
+}
+
+.unimportant {
+    color: gray;
 }
 
 #minimap {

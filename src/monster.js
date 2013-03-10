@@ -76,11 +76,11 @@ Monster.prototype.melee = function(target) {
         qualifier = 'critically ';
     }
     if (roll === 20 || roll + str > 10 + tdex + target.armor) {
-        log('%s %s %s %s for %d damage.', name, qualifier, hits,
-            target.player ? 'you': target, damage);
+        unimportant('%s %s %s %s for %d damage.', name, qualifier, hits,
+                    target.player ? 'you': target, damage);
         target.damage(damage);
     } else {
-        log('%s %s %s.', this, misses, target.player ? 'you' : target);
+        unimportant('%s %s %s.', this, misses, target.player ? 'you' : target);
     }
 };
 
