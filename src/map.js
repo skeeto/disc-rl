@@ -159,6 +159,17 @@ Map.dungeon = function(w, h) {
     return map;
 };
 
+Map.cellular = function(w, h) {
+    var gen = new ROT.Map.Cellular(w, h);
+    gen.randomize(0.55);
+    var map = new Map(0, 0);
+    for (var i = 0; i < 4; i++) gen.create();
+    gen.create(function(x, y, value) {
+        map.grid[[x, y]] = value ? new Floor() : new Wall();
+    });
+    return map;
+};
+
 Map.empty = function() {
     new Map(0, 0);
 };
