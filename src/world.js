@@ -8,6 +8,7 @@ function World(map) {
     this.map = map || Map.empty();
     this.monsters = [];
     this.player = new Player(0, 0);
+    this.time = 0;
     this.focus = {
         x: 0,
         y: 0
@@ -85,12 +86,13 @@ World.prototype.remove = function(monster) {
 World.prototype.run = function() {
     var all = [this.player].concat(this.monsters);
     var wait = all.reduce(function(max, m) {
-        return Math.max(max, m.timer);
+        return Math.min(max, m.timer);
     }, Infinity);
     var movers = all.filter(function(m) {
         m.timer -= wait;
         return m.timer <= 0;
     });
+    world.time += wait;
 
     function go() {
         if (movers.length > 0) {
