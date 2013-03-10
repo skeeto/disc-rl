@@ -53,6 +53,25 @@ Map.prototype.isVisible = function(x, y) {
     return this.visible[[x,y]];
 };
 
+/**
+ * Get a random location where property is a value.
+ *
+ */
+Map.prototype.random = function(property, value) {
+    var that = this;
+    var ps = Object.keys(this.grid).filter(function(key) {
+        return that.grid[key][property] === value;
+    }).map(function(key) {
+        return key.split(',').map(parseFloat);
+    });
+    if (ps.length > 0) {
+        var p = ps.random();
+        return {x: p[0], y: p[1]};
+    } else {
+        return null;
+    }
+};
+
 Map.prototype.display = function() {
     var that = this;
     display.visit(function(tile, x, y) {

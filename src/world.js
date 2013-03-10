@@ -72,6 +72,11 @@ World.prototype.isVisible = function(x, y) {
     return this.map.isVisible(x, y);
 };
 
+World.prototype.spawn = function(type) {
+    var p = this.map.random('solid', false);
+    this.monsters.push(new type(p.x, p.y));
+};
+
 /**
  * Remove a monster from the world.
  * @param {Monster} monster

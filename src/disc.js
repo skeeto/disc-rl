@@ -2,9 +2,13 @@
 log('Greetings, program.');
 
 var world = new World(Map.random('disc-rl', 24, 24, Wall, Floor, Floor));
-world.player.move(1, 2);
-world.monsters.push(new Script(5, 1));
-world.monsters.push(new Script(6, 1));
+(function() {
+    var start = world.map.random('solid', false);
+    world.player.move(start.x, start.y);
+    for (var i = 0; i < 4; i++) {
+        world.spawn(Script);
+    }
+}());
 
 /* Draw a sample display. */
 world.look();
