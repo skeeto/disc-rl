@@ -18,6 +18,13 @@ World.prototype.display = function() {
     this.map.display();
     this.monsters.forEach(withThis('display'));
     this.player.display();
+    display.$name.text(this.player.name);
+    display.$level.text(this.player.level);
+    display.$health.text(this.player.hp + ' / ' + this.player.maxhp);
+    display.$mana.text(this.player.mp + ' / ' + this.player.maxmp);
+    display.$strength.text(this.player.strength);
+    display.$dexterity.text(this.player.dexterity);
+    display.$mind.text(this.player.mind);
 };
 
 World.prototype.look = function(x, y) {

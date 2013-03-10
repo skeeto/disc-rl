@@ -138,3 +138,12 @@ display.remove = function(x, y, type) {
     }
     return this;
 };
+
+/* Stats components. */
+display.$name = $('#name');
+display.$level = $('#level');
+display.$health = $('#health');
+display.$mana = $('#mana');
+display.$strength = $('#strength');
+display.$dexterity = $('#dexterity');
+display.$mind = $('#mind');

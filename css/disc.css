@@ -19,7 +19,7 @@ body {
 #container {
     margin: 0 auto;
     padding: 0;
-    width: 850px;
+    width: 700px;
     position: relative;
 }
 
@@ -46,16 +46,52 @@ body {
     height: 84px;
 }
 
+.message {
+    display: block;
+}
+
 #stats {
-    width: 360px;
+    width: 200px;
     border: 1px solid gray;
-    height: 590px;
+    /* height: 570px; */
     position: absolute;
     left: 485px;
     top: 0px;
-    background: lightgray;
+    background: lightblue;
+    padding: 10px;
 }
 
-.message {
-    display: block;
+#name {
+    display: inline-block;
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+#level {
+    font-size: 20px;
+    float: right;
+}
+
+#level:before {
+    content: 'lvl '
+}
+
+.stat label {
+    display: inline-block;
+    width: 65px;
+}
+
+.stat .value {
+    display: inline-block;
+}
+
+#health {
+}
+
+#mana {
+}
+
+#strength, #dexterity, #mind {
+    margin-top: 5px;
 }
