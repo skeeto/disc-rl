@@ -38,9 +38,11 @@ Monster.prototype.moveBy = function(dx, dy) {
 Monster.prototype.damage = function(damage) {
     this.hp -= damage;
     if (this.hp <= 0) {
-        log('%s has been killed', this);
+        log('%s was derezzed.', this);
         world.remove(this);
+        return true;
     }
+    return false;
 };
 
 /**
