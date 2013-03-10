@@ -5,7 +5,6 @@
 function Monster(x, y, name) {
     this.x = x || 0;
     this.y = y || 0;
-    this.name = name || null;
     this.timer = 0;
 }
 
