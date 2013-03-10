@@ -19,6 +19,8 @@ World.prototype.display = function() {
     this.map.display();
     this.monsters.forEach(withThis('display'));
     this.player.display();
+
+    /* Stats */
     display.$name.text(this.player.name);
     display.$level.text(this.player.level);
     display.$health.text(this.player.hp + ' / ' + this.player.maxhp);
