@@ -9,6 +9,7 @@ function Place(type) {
     this.type = type;
     this.items = [];
     this.solid = false;
+    this.seen = false;
 }
 
 Place.prototype.toString = function() {

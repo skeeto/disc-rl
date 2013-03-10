@@ -1,3 +1,7 @@
+.unseen {
+    opacity: 0.35;
+}
+
 .player:after {
     content: '@'
 }

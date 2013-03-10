@@ -45,22 +45,31 @@ Map.prototype.isSolid = function(x, y) {
     return !place || place.solid;
 };
 
+Map.prototype.markSeen = function(x, y) {
+    var place = this.get(x, y);
+    if (place) {
+        place.seen = true;
+    }
+};
+
 Map.prototype.display = function() {
     var that = this;
     var visible = {};
     var r = display.RADIUS;
     this.fov.compute(world.focus.x, world.focus.y, r, function(x, y) {
         visible[[x, y]] = true;
+        that.markSeen(x, y);
     });
     display.visit(function(tile, x, y) {
         var place = that.get(x, y);
         var type = place ? place.toString() : null;
         if (visible[[x, y]]) {
             tile.set(type);
+        } else if (place && place.seen) {
+            tile.set('unseen', type);
         } else {
             tile.set();
         }
-
     });
 };
 

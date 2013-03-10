@@ -4,16 +4,14 @@ body {
 }
 
 .tile {
-    width: 31px;
-    height: 31px;
+    width: 32px;
+    height: 32px;
     font-size: 25px;
     text-align: center;
     overflow: hidden;
     position: absolute;
     background: black;
     color: white;
-    border-top: 1px solid #333;
-    border-left: 1px solid #333;
 }
 
 #container {
@@ -26,12 +24,10 @@ body {
 #map {
     width: 480px;
     height: 480px;
-    background: red;
+    background: black;
     display: inline-block;
     vertical-align: top;
     position: relative;
-    border-right: 1px solid #333;
-    border-bottom: 1px solid #333;
 }
 
 #log {
