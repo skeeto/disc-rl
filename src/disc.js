@@ -6,6 +6,12 @@ function save() {
 
 function load() {
     world = serializer.parse(localStorage.save);
+    controls.enabled = true;
+    world.display();
+}
+
+function clear() {
+    localStorage.save = null;
 }
 
 /* Test the message log. */
