@@ -1,6 +1,5 @@
 var controls = {
-    enabled: false,
-    callback: null
+    enabled: false
 };
 
 $(window).keypress(function(event) {
@@ -61,9 +60,7 @@ $(window).keypress(function(event) {
     }
     if (moved) {
         controls.enabled = false;
-        controls.callback();
-        world.look();
-        world.display();
+        world.run();
         return false;
     } else {
         return true;
