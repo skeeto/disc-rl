@@ -7,13 +7,8 @@ var MINIMAP_RADIUS = 40;
 /**
  * @constructor
  */
-function Map(w, h) {
+function Map() {
     this.grid = {};
-    for (var x = 0; x < w; x++) {
-        for (var y = 0; y < h; y++) {
-            this.grid[[x, y]] = new Place();
-        }
-    }
     this.visible = {};
 }
 
@@ -137,7 +132,7 @@ Map.prototype.display = function() {
 Map.random = function(seed, w, h) {
     var rng = new RNG(seed);
     var types = Array.prototype.slice.call(arguments, 3);
-    var map = new Map(w, h);
+    var map = new Map();
     for (var x = 0; x < w; x++) {
         for (var y = 0; y < h; y++) {
             if (x === 0 || x === w - 1 || y === 0 || y === h - 1) {
@@ -152,7 +147,7 @@ Map.random = function(seed, w, h) {
 
 Map.dungeon = function(w, h) {
     var gen = new ROT.Map.Digger(w, h);
-    var map = new Map(0, 0);
+    var map = new Map();
     gen.create(function(x, y, value) {
         map.grid[[x, y]] = value ? new Wall() : new Floor();
     });
@@ -162,7 +157,7 @@ Map.dungeon = function(w, h) {
 Map.cellular = function(w, h) {
     var gen = new ROT.Map.Cellular(w, h);
     gen.randomize(0.55);
-    var map = new Map(0, 0);
+    var map = new Map();
     for (var i = 0; i < 4; i++) gen.create();
     gen.create(function(x, y, value) {
         map.grid[[x, y]] = value ? new Floor() : new Wall();
@@ -171,5 +166,5 @@ Map.cellular = function(w, h) {
 };
 
 Map.empty = function() {
-    new Map(0, 0);
+    return new Map();
 };
