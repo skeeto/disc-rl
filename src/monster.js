@@ -41,7 +41,6 @@ Monster.prototype.tryMove = function(x, y) {
 Monster.prototype.damage = function(damage) {
     this.hp -= damage;
     if (this.hp <= 0) {
-        log('%s was derezzed.', this);
         world.remove(this);
         return true;
     }
