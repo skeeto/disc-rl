@@ -1,3 +1,13 @@
+var seralizer = new Hydrate();
+
+function save() {
+    localStorage.save = seralizer.stringify(world);
+}
+
+function load() {
+    world = seralizer.parse(localStorage.save);
+}
+
 /* Test the message log. */
 log('Greetings, program.');
 important('Navigate with the "hjkl yubn" keys, like nethack.');
