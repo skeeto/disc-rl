@@ -40,12 +40,12 @@ Map.prototype.markSeen = function(x, y) {
 
 Map.prototype.computeVisible = function(player) {
     var that = this;
-    this.fov = new ROT.FOV.PreciseShadowcasting(function(x, y) {
+    var fov = new ROT.FOV.PreciseShadowcasting(function(x, y) {
         return !that.isSolid(x, y);
     });
     var r = display.RADIUS;
     that.visible = {};
-    this.fov.compute(player.x, player.y, r, function(x, y) {
+    fov.compute(player.x, player.y, r, function(x, y) {
         that.visible[[x, y]] = true;
         that.markSeen(x, y);
     });
