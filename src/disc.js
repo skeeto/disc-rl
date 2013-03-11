@@ -1,11 +1,11 @@
-var seralizer = new Hydrate();
+var serializer = new Hydrate();
 
 function save() {
-    localStorage.save = seralizer.stringify(world);
+    localStorage.save = serializer.stringify(world);
 }
 
 function load() {
-    world = seralizer.parse(localStorage.save);
+    world = serializer.parse(localStorage.save);
 }
 
 /* Test the message log. */
