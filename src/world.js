@@ -91,7 +91,7 @@ World.prototype.remove = function(monster) {
         log('You were derezzed.');
         world.gameOver();
     } else {
-        log('%s was derezzed.', this);
+        log('%s was derezzed.', monster);
         this.monsters = this.monsters.filter(function(m) {
             return m !== monster;
         });
