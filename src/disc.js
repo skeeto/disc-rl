@@ -7,9 +7,6 @@ var world = new World(Map.dungeon(100, 100));
 (function() {
     var start = world.map.random('solid', false);
     world.player.move(start.x, start.y);
-    for (var i = 0; i < 4; i++) {
-        world.spawn(Script);
-    }
 }());
 
 /* Draw a sample display. */
