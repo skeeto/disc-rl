@@ -22,7 +22,7 @@ var Mdefaults = {
     player: false,
     name: null,
     armor: 0,
-    weapon: function() { return d4(); }
+    weapon: new Disc()
 };
 
 Monster.prototype.init = function(args) {
