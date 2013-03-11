@@ -5,26 +5,24 @@
 /**
  * @constructor
  */
-function Place(type) {
-    this.type = type;
-    this.items = [];
-    this.solid = false;
-    this.seen = false;
+function Place() {
 }
 
+Place.prototype.items = [];
+Place.prototype.solid = false;
+Place.prototype.seen = false;
+
 Place.prototype.toString = function() {
-    return this.type;
+    return 'a ' + this.constructor.name.toLowerCase();
 };
 
 /* Types of places. */
 
 function Wall() {
-    Place.call(this, 'Wall');
     this.solid = true;
 }
-Wall.prototype = Object.create(Place.prototype);
+Wall.extend(Place);
 
 function Floor() {
-    Place.call(this, 'Floor');
 }
-Floor.prototype = Object.create(Place.prototype);
+Floor.extend(Place);

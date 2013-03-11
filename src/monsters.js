@@ -25,36 +25,33 @@ var Mdefaults = {
     weapon: function() { return d4(); }
 };
 
-function M(className, props, constructor) {
-    var m = function(x, y) {
-        Monster.call(this, x, y);
-        if (this.name !== null) {
-            this.name = NameGen.compile(this.name).toString();
-        }
-        if (constructor) {
-            constructor.apply(this, Array.prototype.slice.call(arguments, 2));
-        }
-        this.maxhp = this.strength;
-        for (var i = 1; i <= this.level; i++) {
-            this.maxhp += d6();
-        }
-        this.maxmp = this.mind;
-        for (i = 1; i <= this.level; i++) {
-            this.maxmp += d6();
-        }
-        this.hp = this.maxhp;
-        this.mp = this.maxmp;
-    };
-    m.prototype = Object.create(Monster.prototype);
-    m.prototype.type = className;
-    $.extend(m.prototype, Mdefaults, props);
-    if (!m.prototype.player) {
-        Mindex.add(m);
+Monster.prototype.init = function(args) {
+    Monster.apply(this, args);
+    if (this.name != null) {
+        this.name = NameGen.compile(this.name).toString();
     }
-    return (this[className] = m);
-}
+    this.maxhp = this.strength;
+    for (var i = 1; i <= this.level; i++) {
+        this.maxhp += d6();
+    }
+    this.maxmp = this.mind;
+    for (i = 1; i <= this.level; i++) {
+        this.maxmp += d6();
+    }
+    this.hp = this.maxhp;
+    this.mp = this.maxmp;
+};
 
-M('Player', {
+function Mextend(constructor, props) {
+    constructor.extend(Monster);
+    $.extend(constructor.prototype, Mdefaults, props || {});
+    if (!constructor.prototype.player) {
+        Mindex.add(constructor);
+    }
+};
+
+function Player() { this.init(arguments); }
+Mextend(Player, {
     player: true,
     name: '<sV|Bvs>(.exe)',
     experience: 0
@@ -93,7 +90,8 @@ Player.prototype.nextLevel = function() {
     return Math.ceil(Math.pow(this.level + 5, 2.5));
 };
 
-M('Bot', {
+function Bot() { this.init(arguments); }
+Mextend(Bot, {
     level: 1,
     strength: 2,
     dexterity: 2,
@@ -102,7 +100,8 @@ M('Bot', {
 
 Bot.prototype.act = AI.randomWalk;
 
-M('Script', {
+function Script() { this.init(arguments); }
+Mextend(Script, {
     level: 1,
     strength: 4,
     dexterity: 4,
@@ -110,7 +109,8 @@ M('Script', {
     name: 'id.(sh|bat|js)'
 });
 
-M('Adware', {
+function Adware() { this.init(arguments); }
+Mextend(Adware, {
     level: 2,
     strength: 8,
     dexterity: 8,

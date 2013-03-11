@@ -86,7 +86,7 @@ Map.prototype.display = function() {
     var that = this;
     display.visit(function(tile, x, y) {
         var place = that.get(x, y);
-        var type = place ? place.toString() : null;
+        var type = place ? place.constructor.name : null;
         if (that.visible[[x, y]]) {
             tile.set(type);
         } else if (place && place.seen) {

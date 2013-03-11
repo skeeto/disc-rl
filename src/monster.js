@@ -10,12 +10,12 @@ function Monster(x, y, name) {
 
 Monster.prototype.display = function() {
     if (world.isVisible(this.x, this.y)) {
-        display.add(this.x, this.y, this.type);
+        display.add(this.x, this.y, this.constructor.name);
     }
 };
 
 Monster.prototype.toString = function() {
-    return this.name || 'the ' + this.type;
+    return this.name || 'the ' + this.constructor.name.toLowerCase();
 };
 
 Monster.prototype.move = function(x, y) {
