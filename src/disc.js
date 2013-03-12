@@ -3,7 +3,6 @@
         // XXX Display loading message
         start = Date.now();
         Save.load('world');
-        debug(10, 'Loading took %0.3f seconds.', (Date.now() - start) / 1000);
         log('Game restored. Welcome back, %s.', world.player);
     } else {
         log('Greetings, program.');

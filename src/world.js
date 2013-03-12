@@ -143,6 +143,5 @@ World.prototype.save = function() {
     if (this.active) {
         var start = Date.now();
         Save.save('world');
-        debug(10, 'Saving took %0.3f seconds.', (Date.now() - start) / 1000);
     }
 };
