@@ -135,7 +135,7 @@ World.prototype.run = function() {
 
 World.prototype.gameOver = function() {
     this.active = false;
-    Save.clear();
+    Save.clear('world');
     this.display();
 };
 
