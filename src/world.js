@@ -129,8 +129,8 @@ World.prototype.run = function() {
     }
 
     var mover = movers.pop();
-    mover.act(this.run.bind(this));
     mover.timer = Math.max(20 - bonus(mover.dexterity), 1);
+    mover.act(this.run.bind(this));
 };
 
 World.prototype.gameOver = function() {
