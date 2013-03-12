@@ -17,6 +17,7 @@ function World(map) {
         y: 0
     };
     this.active = true;
+    this.lastSave = 0;
 }
 
 World.prototype.display = function() {
@@ -115,6 +116,11 @@ World.prototype.run = function() {
     });
     world.time += wait;
 
+    if (world.time - world.lastSave > 2000) {
+        this.save();
+        world.lastSave = world.time;
+    }
+
     while (world.time > this.nextspawn) {
         this.nextspawn += R.exponential() * this.spawnrate;
         // Occasionally spawn higher level monsters
@@ -129,5 +135,14 @@ World.prototype.run = function() {
 
 World.prototype.gameOver = function() {
     this.active = false;
+    Save.clear();
     this.display();
+};
+
+World.prototype.save = function() {
+    if (this.active) {
+        var start = Date.now();
+        Save.save('world');
+        debug(10, 'Saving took %0.3f seconds.', (Date.now() - start) / 1000);
+    }
 };
