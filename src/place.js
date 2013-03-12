@@ -8,7 +8,6 @@
 function Place() {
 }
 
-Place.prototype.items = [];
 Place.prototype.solid = false;
 Place.prototype.seen = false;
 
@@ -18,11 +17,10 @@ Place.prototype.toString = function() {
 
 /* Types of places. */
 
-function Wall() {
-    this.solid = true;
-}
+function Wall() { Place.call(this); }
 Wall.extend(Place);
 
-function Floor() {
-}
+Wall.prototype.solid = true;
+
+function Floor() { Place.call(this); }
 Floor.extend(Place);
