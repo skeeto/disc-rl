@@ -22,6 +22,5 @@
 
 ## Stretch goals
 
- * save/load
  * stores/merchants
  * autoexplore
