@@ -21,6 +21,100 @@ body {
     position: relative;
 }
 
+#overlay {
+    position: absolute;
+    top: 50px;
+    width: 600px;
+    margin-left: -300px;
+    left: 50%;
+    color: white;
+    z-index: 100;
+    background: #001;
+    padding: 30px;
+    box-shadow: 0 0 15px #aaa;
+    border-radius: 10px;
+    display: none;
+    font-size: 16px;
+}
+
+#overlay kbd {
+    border: 4px outset #999;
+    padding: 3px;
+    margin: 2px;
+    background: #bbb;
+    color: black;
+    width: 10px;
+    display: inline-block;
+    width: 20px;
+    text-align: center;
+    font-weight: bold;
+}
+
+#overlay table {
+    margin: 0 auto;
+    text-align: center;
+}
+
+#overlay .button {
+    cursor: pointer;
+    float: right;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+    display: inline-block;
+    padding: 8px;
+    border-radius: 5px;
+    background: #a40;
+    box-shadow: 0 0 5px #f70;
+    color: white;
+    background-image: linear-gradient(bottom, rgb(130,82,0) 15%,
+                                      rgb(214,185,0) 59%);
+    background-image: -o-linear-gradient(bottom, rgb(130,82,0) 15%,
+                                         rgb(214,185,0) 59%);
+    background-image: -moz-linear-gradient(bottom, rgb(130,82,0) 15%,
+                                           rgb(214,185,0) 59%);
+    background-image: -webkit-linear-gradient(bottom, rgb(130,82,0) 15%,
+                                              rgb(214,185,0) 59%);
+    background-image: -ms-linear-gradient(bottom, rgb(130,82,0) 15%,
+                                          rgb(214,185,0) 59%);
+}
+
+#overlay h1, #overlay h2, #overlay h3, #overlay h4 {
+    color: yellow;
+    margin: 5px 15px;
+}
+
+#overlay p {
+    margin: 10px 0;
+    text-indent: 1.5em;
+}
+
+#overlay ul {
+    list-style-type: none;
+    margin: 15px 15px;
+}
+
+#overlay a:link, #overlay a:visited {
+    color: #f70;
+}
+
+
+#overlay h1 {
+    font-size: 24px;
+}
+
+#overlay h2 {
+    font-size: 20px;
+}
+
+#overlay h3 {
+    font-size: 18px;
+}
+
+#overlay h4 {
+    font-size: 16px;
+}
+
 #map {
     width: 480px;
     height: 480px;

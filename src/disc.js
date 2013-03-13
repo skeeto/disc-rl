@@ -1,10 +1,24 @@
+function overlay(name) {
+    var path = 'story/' + name + '.html';
+    var $overlay = $('#overlay').load(path, function() {
+        $overlay.show()
+            .append($('<span>Close</span>').attr({
+                'class': 'button'
+            }).click(function() {
+                $overlay.hide();
+            }));
+    });
+}
+
 (function() {
     if (Save.exists('world')) {
-        // XXX Display loading message
-        start = Date.now();
         Save.load('world');
         log('Game restored. Welcome back, %s.', world.player);
     } else {
+        if (!Save.exists('playedBefore')) {
+            overlay('intro');
+            Save.save('playedBefore', true);
+        }
         log('Greetings, program.');
         important('Navigate with the "hjkl yubn" keys, like nethack.');
         //var world = new World(Map.cellular(120, 120));

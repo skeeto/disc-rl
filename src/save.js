@@ -98,8 +98,9 @@ Save.parse = function(string) {
 
 /* Main API */
 
-Save.save = function(variable) {
-    localStorage[variable] = this.stringify(window[variable]);
+Save.save = function(variable, value) {
+    if (arguments.length === 1) value = window[variable];
+    localStorage[variable] = this.stringify(value);
     return variable;
 };
 
