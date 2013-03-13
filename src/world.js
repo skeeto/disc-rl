@@ -2,6 +2,8 @@
  * Exports: World, world
  */
 
+var WORLD_VERSION = 1;
+
 var world = null;
 
 function World(map) {
@@ -17,6 +19,7 @@ function World(map) {
     };
     this.active = true;
     this.lastSave = 0;
+    this.version = WORLD_VERSION;
 }
 
 World.prototype.display = function() {
@@ -143,5 +146,21 @@ World.prototype.save = function() {
     if (this.active) {
         var start = Date.now();
         Save.save('world');
+    }
+};
+
+/**
+ * Try to load the world from the save.
+ */
+World.load = function() {
+    if (Save.exists('world')) {
+        Save.load('world');
+        if (world.version !== WORLD_VERSION) {
+            world = null;
+            return false;
+        }
+        return true;
+    } else {
+        return false;
     }
 };

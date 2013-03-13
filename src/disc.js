@@ -18,8 +18,7 @@ lograw('Navigate with the "hjkl yubn" keys (<a href="">help</a>)')
     });
 
 (function() {
-    if (Save.exists('world')) {
-        Save.load('world');
+    if (World.load()) {
         log('Game restored. Welcome back, %s.', world.player);
     } else {
         if (!Save.exists('playedBefore')) {
