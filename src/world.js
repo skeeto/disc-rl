@@ -6,7 +6,6 @@ var world = null;
 
 function World(map) {
     this.map = map || Map.empty();
-    this.monsters = [];
     this.player = new Player(0, 0);
     this.time = 0;
     this.spawnrate = 250;
@@ -23,7 +22,7 @@ function World(map) {
 World.prototype.display = function() {
     this.map.computeVisible(this.player);
     this.map.display();
-    this.monsters.forEach(withThis('display'));
+    this.map.monsters.forEach(withThis('display'));
     if (this.active) this.player.display();
 
     /* Stats */
@@ -56,7 +55,7 @@ World.prototype.look = function(x, y) {
  * @returns the monster at the position.
  */
 World.prototype.monsterAt = function(x, y) {
-    var monsters = this.monsters.concat([this.player]);
+    var monsters = this.map.monsters.concat([this.player]);
     for (var i = 0; i < monsters.length; i++) {
         if (monsters[i].isAt(x, y)) return monsters[i];
     }
@@ -80,7 +79,7 @@ World.prototype.isVisible = function(x, y) {
 
 World.prototype.spawn = function(type) {
     var p = this.map.random('solid', false);
-    if (!this.monsterAt(p.x, p.y)) this.monsters.push(new type(p.x, p.y));
+    if (!this.monsterAt(p.x, p.y)) this.map.monsters.push(new type(p.x, p.y));
 };
 
 /**
@@ -93,7 +92,7 @@ World.prototype.remove = function(monster) {
         world.gameOver();
     } else {
         log('%s was derezzed.', monster);
-        this.monsters = this.monsters.filter(function(m) {
+        this.map.monsters = this.map.monsters.filter(function(m) {
             return m !== monster;
         });
         var exp = monster.maxhp + Math.max(monster.dexterity, monster.mind);
@@ -106,7 +105,7 @@ World.prototype.remove = function(monster) {
  */
 World.prototype.run = function() {
     if (!this.active) return;
-    var all = [this.player].concat(this.monsters);
+    var all = [this.player].concat(this.map.monsters);
     var wait = Math.max(0, all.reduce(function(max, m) {
         return Math.min(max, m.timer);
     }, Infinity));
@@ -123,7 +122,7 @@ World.prototype.run = function() {
 
     while (world.time > this.nextspawn) {
         this.nextspawn += R.exponential() * this.spawnrate *
-            Math.max(1, Math.log(this.monsters.length));
+            Math.max(1, Math.log(this.map.monsters.length));
         // Occasionally spawn higher level monsters
         var mod = Math.floor(R.exponential() * 0.5);
         this.spawn(Mindex.random(this.level + mod));

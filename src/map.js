@@ -9,6 +9,7 @@ var MINIMAP_RADIUS = 40;
  */
 function Map() {
     this.grid = {};
+    this.monsters = [];
     this.visible = {};
 }
 
