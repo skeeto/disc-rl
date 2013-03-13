@@ -122,7 +122,8 @@ World.prototype.run = function() {
     }
 
     while (world.time > this.nextspawn) {
-        this.nextspawn += R.exponential() * this.spawnrate;
+        this.nextspawn += R.exponential() * this.spawnrate *
+            Math.max(1, Math.log(this.monsters.length));
         // Occasionally spawn higher level monsters
         var mod = Math.floor(R.exponential() * 0.5);
         this.spawn(Mindex.random(this.level + mod));
