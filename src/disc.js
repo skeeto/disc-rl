@@ -10,6 +10,13 @@ function overlay(name) {
     });
 }
 
+lograw('Navigate with the "hjkl yubn" keys (<a href="">help</a>)')
+    .addClass('important')
+    .find('a').click(function() {
+        overlay('intro');
+        return false;
+    });
+
 (function() {
     if (Save.exists('world')) {
         Save.load('world');
@@ -20,15 +27,6 @@ function overlay(name) {
             Save.save('playedBefore', true);
         }
         log('Greetings, program.');
-
-        lograw('Navigate with the "hjkl yubn" keys (%s)',
-               '<a href="">help</a>')
-            .addClass('important')
-            .find('a').click(function() {
-                overlay('intro');
-                return false;
-            });
-
         //var world = new World(Map.cellular(120, 120));
         world = new World(Map.dungeon(100, 100));
         var start = world.map.random('solid', false);
