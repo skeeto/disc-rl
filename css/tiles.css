@@ -2,6 +2,12 @@
     opacity: 0.35;
 }
 
+.selected {
+    width: 28px;
+    height: 28px;
+    border: 2px solid red;
+}
+
 .Player:after {
     content: '@'
 }
