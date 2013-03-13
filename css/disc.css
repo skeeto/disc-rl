@@ -145,6 +145,10 @@ body {
     padding: 0px;
 }
 
+.message a:visited, .message a:link {
+    color: orange;
+}
+
 .debug {
     color: red;
 }

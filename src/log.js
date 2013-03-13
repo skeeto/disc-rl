@@ -15,6 +15,13 @@ function makeTag(text) {
     return $tag;
 }
 
+function lograw(message) {
+    var text = vsprintf(message, _slice.call(arguments, 1));
+    var $tag = $('<span/>').attr({'class': 'message'}).html(text);
+    $log.prepend($tag);
+    return $tag;
+}
+
 function log(message) {
     var text = vsprintf(message, _slice.call(arguments, 1));
     $log.prepend(makeTag(capitalize(text)));
