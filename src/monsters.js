@@ -66,7 +66,7 @@ Player.prototype.act = function(callback) {
 Player.prototype.addExperience = function(exp) {
     this.experience += exp;
     unimportant('You gain %d experience.', exp);
-    if (this.experience > this.nextLevel()) {
+    while (this.experience > this.nextLevel()) {
         this.levelUp();
     }
 };
