@@ -63,9 +63,7 @@ Mextend(Player, {
 });
 
 Player.prototype.act = function(callback) {
-    controls.enabled = true;
-    world.look();
-    world.display();
+    controls.act();
 };
 
 Player.prototype.addExperience = function(exp) {

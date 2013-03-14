@@ -1,5 +1,6 @@
 var controls = {
-    enabled: false
+    enabled: false,
+    target: []
 };
 
 $(window).keypress(function(event) {
@@ -19,10 +20,12 @@ $(window).keypress(function(event) {
         break;
     }
 
-    if (!controls.enabled) return true;
+    if (!controls.enabled) {
+        return true;
+    }
+
     var dx = null, dy = null;
     var moved = false;
-
     switch (event.which) {
     case 'h'.charCodeAt(0):
         dx = -1;
@@ -64,6 +67,30 @@ $(window).keypress(function(event) {
         /* Wait a turn. */
         moved = true;
         break;
+    case 'H'.charCodeAt(0):
+        controls.goStraight(-1, 0);
+        break;
+    case 'J'.charCodeAt(0):
+        controls.goStraight(0, 1);
+        break;
+    case 'K'.charCodeAt(0):
+        controls.goStraight(0, -1);
+        break;
+    case 'L'.charCodeAt(0):
+        controls.goStraight(1, 0);
+        break;
+    case 'Y'.charCodeAt(0):
+        controls.goStraight(-1, -1);
+        break;
+    case 'U'.charCodeAt(0):
+        controls.goStraight(1, -1);
+        break;
+    case 'B'.charCodeAt(0):
+        controls.goStraight(-1, 1);
+        break;
+    case 'N'.charCodeAt(0):
+        controls.goStraight(1, 1);
+        break;
     }
     if (dx != null && dy != null) {
         var p = world.player;
@@ -86,3 +113,37 @@ $(window).keypress(function(event) {
         return true;
     }
 });
+
+
+controls.act = function() {
+    world.look();
+    world.display();
+    if (controls.target.length > 0) {
+        var monsters = world.visibleMonsters();
+        if (monsters.length > 0) {
+            unimportant('You see %s.', monsters[0]);
+            controls.target = [];
+            controls.enabled = true;
+            return;
+        }
+        var next = controls.target.pop();
+        world.player.move(next.x, next.y);
+        setTimeout(function() {
+            world.run();
+        }, 10);
+    } else {
+        controls.enabled = true;
+    }
+};
+
+controls.goStraight = function(dx, dy) {
+    var path = [];
+    var p = {x: world.player.x + dx, y: world.player.y + dy};
+    while (!world.isSolid(p.x, p.y)) {
+        path.push({x: p.x, y: p.y});
+        p.x += dx;
+        p.y += dy;
+    }
+    controls.target = path.reverse();
+    controls.act();
+};
