@@ -3,10 +3,7 @@
  * map generation
    * connectedness
    * more tiles
- * multiple dungeon levels
- * monster AI
  * more monsters
- * monster spawning
  * ranged attacks
  * spells
  * equipment
