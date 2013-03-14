@@ -23,7 +23,7 @@ body {
 
 #overlay {
     position: absolute;
-    top: 50px;
+    top: 10px;
     width: 600px;
     margin-left: -300px;
     left: 50%;
