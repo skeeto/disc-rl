@@ -241,5 +241,9 @@ World.prototype.nearest = function(f, x, y) {
             }
         }
     });
-    return {x: select[0], y: select[1]};
+    if (select) {
+        return {x: select[0], y: select[1]};
+    } else {
+        return null;
+    }
 };

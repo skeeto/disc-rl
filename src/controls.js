@@ -138,8 +138,11 @@ controls.act = function() {
             world.run();
         }, 10);
     } else if (controls.auto) {
-        controls.autoexplore();
-        controls.act();
+        if (controls.autoexplore()) {
+            controls.act();
+        } else {
+            controls.auto = false;
+        }
     } else {
         controls.enabled = true;
     }
@@ -176,7 +179,9 @@ controls.autoexplore = function() {
     });
     if (pos == null) {
         log('Entire map has been explored.');
+        return false;
     } else {
         controls.goTo(pos.x, pos.y);
+        return true;
     }
 };
