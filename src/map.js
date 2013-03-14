@@ -7,9 +7,10 @@ var MINIMAP_RADIUS = 40;
 /**
  * @constructor
  */
-function Map() {
+function Map(level) {
     this.grid = {};
     this.monsters = [];
+    this.level = level || 1;
     this.visible = {};
 }
 

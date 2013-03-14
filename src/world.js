@@ -12,7 +12,6 @@ function World(map) {
     this.time = 0;
     this.spawnrate = 250;
     this.nextspawn = 0;
-    this.level = 1;
     this.focus = {
         x: 0,
         y: 0
@@ -128,7 +127,7 @@ World.prototype.run = function() {
             Math.max(1, Math.log(this.map.monsters.length));
         // Occasionally spawn higher level monsters
         var mod = Math.floor(R.exponential() * 0.5);
-        this.spawn(Mindex.random(this.level + mod));
+        this.spawn(Mindex.random(this.map.level + mod));
     }
 
     var mover = movers.pop();
