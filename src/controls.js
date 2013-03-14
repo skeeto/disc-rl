@@ -64,7 +64,7 @@ $(window).keypress(function(event) {
     case '<'.charCodeAt(0):
         moved = world.useStairs();
         break;
-    case '.'.charCodeAt(0):
+    case 'w'.charCodeAt(0):
         /* Wait a turn. */
         moved = true;
         break;
@@ -96,6 +96,12 @@ $(window).keypress(function(event) {
         controls.auto = true;
         controls.act();
         return false;
+    case '.'.charCodeAt(0):
+        return controls.goStairs(StairDown);
+        break;
+    case ','.charCodeAt(0):
+        return controls.goStairs(StairUp);
+        break;
     }
     if (dx != null && dy != null) {
         var p = world.player;
@@ -183,5 +189,19 @@ controls.autoexplore = function() {
     } else {
         controls.goTo(pos.x, pos.y);
         return true;
+    }
+};
+
+controls.goStairs = function(type) {
+    var pos = world.nearest(function(p, x, y) {
+        return p.seen && p instanceof type;
+    });
+    if (pos) {
+        controls.goTo(pos.x, pos.y);
+        controls.act();
+        return true;
+    } else {
+        log('No such stairs are known.');
+        return false;
     }
 };
