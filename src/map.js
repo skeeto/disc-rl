@@ -119,15 +119,18 @@ Map.prototype.display = function() {
             var dx = Math.abs(cx - x);
             var dy = Math.abs(cy - y);
             if (dx <= MINIMAP_RADIUS && dy <= MINIMAP_RADIUS) {
-                if (place.solid) {
-                    ctx.fillStyle = 'blue';
-                } else {
-                    ctx.fillStyle = 'lightgray';
-                }
                 if (that.isVisible(x, y)) {
                     ctx.globalAlpha = 1;
                 } else {
                     ctx.globalAlpha = 0.5;
+                }
+                if (place.solid) {
+                    ctx.fillStyle = 'blue';
+                } else if (place instanceof Stair) {
+                    ctx.fillStyle = 'yellow';
+                    ctx.globalAlpha = 1;
+                } else {
+                    ctx.fillStyle = 'lightgray';
                 }
                 ctx.fillRect((x - cx) * s + MINIMAP_RADIUS * s,
                              (y - cy) * s + MINIMAP_RADIUS * s,
