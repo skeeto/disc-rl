@@ -50,7 +50,12 @@ function Mextend(constructor, props) {
     }
 };
 
-function Player() { this.init(arguments); }
+function Player() {
+    this.strength = statRoll();
+    this.dexterity = statRoll();
+    this.mind = statRoll();
+    this.init(arguments);
+}
 Mextend(Player, {
     player: true,
     name: '<sV|Bvs>(.exe)',
