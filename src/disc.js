@@ -3,7 +3,7 @@ function overlay(name) {
     var $overlay = $('#overlay').load(path, function() {
         $overlay.show()
             .append($('<span>Close</span>').attr({
-                'class': 'button'
+                'class': 'button close'
             }).click(function() {
                 $overlay.hide();
             }));
