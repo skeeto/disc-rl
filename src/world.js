@@ -217,6 +217,12 @@ World.reset = function() {
     world.look();
 };
 
+/**
+ * Find the nearest position that meets the predicate.
+ * @param f The predicate function f(place, x, y).
+ * @param [x=this.player.x] The source x-position.
+ * @param [y=this.player.y] The source y-position.
+ */
 World.prototype.nearest = function(f, x, y) {
     x = x == null ? this.player.x : x;
     y = y == null ? this.player.y : y;
