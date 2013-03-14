@@ -27,8 +27,8 @@ lograw('Navigate with the "hjkl yubn" keys (<a href="">help</a>)')
         }
         log('Greetings, program.');
         //var world = new World(Map.cellular(120, 120));
-        world = new World(Map.dungeon(100, 100));
-        var start = world.map.random('solid', false);
+        world = new World(Map.dungeon(DUNGEON_SIZE));
+        var start = world.map.random(function(place) { return !place.solid; });
         world.player.move(start.x, start.y);
         world.look();
     }

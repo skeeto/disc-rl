@@ -113,7 +113,7 @@ Mextend(Script, {
 function Adware() { this.init(arguments); }
 Mextend(Adware, {
     level: 2,
-    strength: 8,
+    strength: 6,
     dexterity: 5,
     mind: 4
 });

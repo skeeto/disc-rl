@@ -3,6 +3,7 @@
  */
 
 var WORLD_VERSION = 1;
+var DUNGEON_SIZE = 100;
 
 var world = null;
 
@@ -28,6 +29,7 @@ World.prototype.display = function() {
     /* Stats */
     display.$name.text(this.player.name);
     display.$level.text(this.player.level);
+    display.$dlevel.text(this.map.level);
     display.$experience.text(this.player.experience +
                              ' / ' + this.player.nextLevel());
     display.$health.text(this.player.hp + ' / ' + this.player.maxhp);
@@ -78,7 +80,7 @@ World.prototype.isVisible = function(x, y) {
 };
 
 World.prototype.spawn = function(type) {
-    var p = this.map.random('solid', false);
+    var p = this.map.random(function(place) { return !place.solid; });
     if (!this.monsterAt(p.x, p.y)) this.map.monsters.push(new type(p.x, p.y));
 };
 
@@ -156,6 +158,38 @@ World.load = function() {
             world = null;
             return false;
         }
+        return true;
+    } else {
+        return false;
+    }
+};
+
+/**
+ * Use the stairs at the player's location.
+ */
+World.prototype.useStairs = function() {
+    var place = this.map.get(this.player.x, this.player.y);
+    if (place instanceof Stair) {
+        if (!place.map) {
+            place.map = Map.dungeon(DUNGEON_SIZE, DUNGEON_SIZE);
+            place.map.level = this.map.level + 1;
+            var pos = place.map.random(function(place) {
+                return !(place.solid || place instanceof Stair);
+            });
+            // Circular reference issue here.
+            /*
+            var up = new StairUp(this.map);
+            up.x = this.player.x;
+            up.y = this.player.y;
+            place.map.set(pos.x, pos.y, up);
+             */
+            place.x = pos.x;
+            place.y = pos.y;
+        }
+        this.map = place.map;
+        this.player.x = place.x;
+        this.player.y = place.y;
+        this.map.nextspawn = Math.max(this.map.nextspawn, world.time);
         return true;
     } else {
         return false;

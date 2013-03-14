@@ -182,19 +182,29 @@ body {
 }
 
 #name {
-    display: inline-block;
+    display: block;
     font-size: 26px;
     font-weight: bold;
-    margin-bottom: 5px;
+    margin-bottom: 0px;
 }
 
-#level {
-    font-size: 20px;
-    float: right;
+#level, #dlevel {
+    font-size: 16px;
+    font-weight: bold;
+    display: inline-block;
+    margin-bottom: 10px;
 }
 
 #level:before {
-    content: 'lvl '
+    content: 'level '
+}
+
+#level:after {
+    content: ', '
+}
+
+#dlevel:before {
+    content: 'depth '
 }
 
 .stat label {
@@ -214,5 +224,9 @@ body {
 }
 
 #strength, #dexterity, #mind {
-    margin-top: 5px;
+    margin-top: 0px;
+}
+
+#strength {
+    margin-top: 10px;
 }

@@ -64,13 +64,12 @@ Map.prototype.isVisible = function(x, y) {
 };
 
 /**
- * Get a random location where property is a value.
- *
+ * Get a random dungeon location that meets a predicate.
  */
-Map.prototype.random = function(property, value) {
+Map.prototype.random = function(f) {
     var that = this;
     var ps = Object.keys(this.grid).filter(function(key) {
-        return that.grid[key][property] === value;
+        return f(that.grid[key]);
     }).map(function(key) {
         return key.split(',').map(parseFloat);
     });
@@ -80,6 +79,14 @@ Map.prototype.random = function(property, value) {
     } else {
         return null;
     }
+};
+
+/**
+ * Add a random downstairs.
+ */
+Map.prototype.addStair = function(map) {
+    var p = this.random(function(place) { return !place.solid; });
+    this.set(p.x, p.y, new StairDown(map));
 };
 
 Map.prototype.display = function() {
@@ -156,6 +163,7 @@ Map.dungeon = function(w, h) {
     gen.create(function(x, y, value) {
         map.grid[[x, y]] = value ? new Wall() : new Floor();
     });
+    map.addStair(null);
     return map;
 };
 
@@ -173,5 +181,3 @@ Map.cellular = function(w, h) {
 Map.empty = function() {
     return new Map();
 };
-
-var MAP_EXIT = Map.empty();

@@ -144,6 +144,7 @@ display.minimap = $('#minimap').get(0).getContext('2d');
 /* Stats components. */
 display.$name = $('#name');
 display.$level = $('#level');
+display.$dlevel = $('#dlevel');
 display.$experience = $('#experience');
 display.$health = $('#health');
 display.$mana = $('#mana');

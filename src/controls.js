@@ -40,6 +40,10 @@ $(window).keypress(function(event) {
         dx = 1;
         dy = 1;
         break;
+    case '>'.charCodeAt(0):
+    case '<'.charCodeAt(0):
+        moved = world.useStairs();
+        break;
     case '.'.charCodeAt(0):
         /* Wait a turn. */
         moved = true;
