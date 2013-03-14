@@ -3,6 +3,22 @@ var controls = {
 };
 
 $(window).keypress(function(event) {
+    switch (event.which) {
+    case 'Q'.charCodeAt(0):
+        if (confirm('Quit this character and re-roll?')) {
+            world.gameOver();
+            $('#log').empty();
+            printHelp();
+            World.reset();
+            world.display();
+            world.run();
+        }
+        break;
+    case 13:
+        $('#overlay').hide();
+        break;
+    }
+
     if (!controls.enabled) return true;
     var dx = null, dy = null;
     var moved = false;

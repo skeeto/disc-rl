@@ -207,3 +207,11 @@ World.prototype.visibleMonsters = function() {
         return that.map.isVisible(m.x, m.y);
     });
 };
+
+World.reset = function() {
+    log('Greetings, program.');
+    world = new World(Map.dungeon(DUNGEON_SIZE));
+    var start = world.map.random(function(place) { return !place.solid; });
+    world.player.move(start.x, start.y);
+    world.look();
+};

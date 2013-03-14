@@ -10,14 +10,17 @@ function overlay(name) {
     });
 }
 
-lograw('Navigate with the "hjkl yubn" keys (<a href="">help</a>)')
-    .addClass('important')
-    .find('a').click(function() {
-        overlay('intro');
-        return false;
-    });
+function printHelp() {
+    lograw('Navigate with the "hjkl yubn" keys (<a href="">help</a>)')
+        .addClass('important')
+        .find('a').click(function() {
+            overlay('intro');
+            return false;
+        });
+}
 
 (function() {
+    printHelp();
     if (World.load()) {
         log('Game restored. Welcome back, %s.', world.player);
     } else {
@@ -25,12 +28,7 @@ lograw('Navigate with the "hjkl yubn" keys (<a href="">help</a>)')
             overlay('intro');
             Save.save('playedBefore', true);
         }
-        log('Greetings, program.');
-        //var world = new World(Map.cellular(120, 120));
-        world = new World(Map.dungeon(DUNGEON_SIZE));
-        var start = world.map.random(function(place) { return !place.solid; });
-        world.player.move(start.x, start.y);
-        world.look();
+        World.reset();
     }
 }());
 
