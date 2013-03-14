@@ -173,3 +173,5 @@ Map.cellular = function(w, h) {
 Map.empty = function() {
     return new Map();
 };
+
+var MAP_EXIT = Map.empty();

@@ -7,39 +7,3 @@
     height: 28px;
     border: 2px solid red;
 }
-
-.Player:after {
-    content: '@'
-}
-
-.Floor {
-    background: #44f;
-}
-
-.Wall {
-    background: #003;
-}
-
-.Bot {
-    color: pink;
-}
-
-.Bot:after {
-    content: 'x';
-}
-
-.Script {
-    color: pink;
-}
-
-.Script:after {
-    content: 's';
-}
-
-.Adware {
-    color: red;
-}
-
-.Adware:after {
-    content: 'a';
-}

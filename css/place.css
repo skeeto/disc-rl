@@ -1,0 +1,23 @@
+.Floor {
+    background: #44f;
+}
+
+.Wall {
+    background: #003;
+}
+
+.StairUp {
+    background: #44f;
+}
+
+.StairUp:after {
+    content: '<';
+}
+
+.StairDown {
+    background: #44f;
+}
+
+.StairDown:after {
+    content: '>';
+}
