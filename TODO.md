@@ -20,4 +20,3 @@
 ## Stretch goals
 
  * stores/merchants
- * autoexplore
