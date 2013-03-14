@@ -139,6 +139,7 @@ World.prototype.run = function() {
 World.prototype.gameOver = function() {
     this.active = false;
     Save.clear('world');
+    this.look();
     this.display();
 };
 
@@ -214,4 +215,25 @@ World.reset = function() {
     var start = world.map.random(function(place) { return !place.solid; });
     world.player.move(start.x, start.y);
     world.look();
+};
+
+World.prototype.nearest = function(f, x, y) {
+    x = x == null ? this.player.x : x;
+    y = y == null ? this.player.y : y;
+    var dist2 = Infinity;
+    var select = null;
+    var that = this;
+    Object.keys(this.map.grid).forEach(function(key) {
+        var pos = key.split(',').map(parseFloat);
+        if (f(that.map.grid[key], pos[0], pos[1])) {
+            var dx = pos[0] - x;
+            var dy = pos[1] - y;
+            var d2 = dx * dx + dy * dy;
+            if (d2 < dist2) {
+                select = pos;
+                dist2 = d2;
+            }
+        }
+    });
+    return {x: select[0], y: select[1]};
 };

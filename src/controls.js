@@ -1,6 +1,7 @@
 var controls = {
     enabled: false,
-    target: []
+    target: [],
+    auto: false
 };
 
 $(window).keypress(function(event) {
@@ -91,6 +92,10 @@ $(window).keypress(function(event) {
     case 'N'.charCodeAt(0):
         controls.goStraight(1, 1);
         break;
+    case 'o'.charCodeAt(0):
+        controls.auto = true;
+        controls.act();
+        return false;
     }
     if (dx != null && dy != null) {
         var p = world.player;
@@ -123,6 +128,7 @@ controls.act = function() {
         if (monsters.length > 0) {
             unimportant('You see %s.', monsters[0]);
             controls.target = [];
+            controls.auto = false;
             controls.enabled = true;
             return;
         }
@@ -131,6 +137,9 @@ controls.act = function() {
         setTimeout(function() {
             world.run();
         }, 10);
+    } else if (controls.auto) {
+        controls.autoexplore();
+        controls.act();
     } else {
         controls.enabled = true;
     }
@@ -146,4 +155,28 @@ controls.goStraight = function(dx, dy) {
     }
     controls.target = path.reverse();
     controls.act();
+};
+
+controls.goTo = function(x, y) {
+    var passable = function(x, y) {
+        return !world.isSolid(x, y);
+    };
+    var astar = new ROT.Path.AStar(x, y, passable);
+    var path = [];
+    astar.compute(world.player.x, world.player.y, function(x, y) {
+        path.push({x: x, y: y});
+    });
+    controls.target = path.reverse();
+    controls.target.pop();
+};
+
+controls.autoexplore = function() {
+    var pos = world.nearest(function(p, x, y) {
+        return !p.seen && !p.solid;
+    });
+    if (pos == null) {
+        log('Entire map has been explored.');
+    } else {
+        controls.goTo(pos.x, pos.y);
+    }
 };
