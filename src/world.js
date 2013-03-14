@@ -197,3 +197,13 @@ World.prototype.useStairs = function() {
         return false;
     }
 };
+
+/**
+ * Return a list of monsters currently in view.
+ */
+World.prototype.visibleMonsters = function() {
+    var that = this;
+    return this.map.monsters.filter(function(m) {
+        return that.map.isVisible(m.x, m.y);
+    });
+};
