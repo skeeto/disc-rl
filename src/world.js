@@ -9,6 +9,7 @@ var world = null;
 
 function World(map) {
     this.map = map || Map.empty();
+    this.maps = {};
     this.player = new Player(0, 0);
     this.time = 0;
     this.focus = {
@@ -171,22 +172,23 @@ World.prototype.useStairs = function() {
     var place = this.map.get(this.player.x, this.player.y);
     if (place instanceof Stair) {
         if (!place.map) {
-            place.map = Map.dungeon(DUNGEON_SIZE, DUNGEON_SIZE);
-            place.map.level = this.map.level + 1;
-            var pos = place.map.random(function(place) {
+            var map = Map.dungeon(DUNGEON_SIZE, DUNGEON_SIZE);
+            this.maps[map.id] = map;
+            place.map = map.id;
+            map.level = this.map.level + 1;
+            var pos = map.random(function(place) {
                 return !(place.solid || place instanceof Stair);
             });
-            // Circular reference issue here.
-            /*
-            var up = new StairUp(this.map);
+            var up = new StairUp(this.map.id);
             up.x = this.player.x;
             up.y = this.player.y;
-            place.map.set(pos.x, pos.y, up);
-             */
+            map.set(pos.x, pos.y, up);
             place.x = pos.x;
             place.y = pos.y;
         }
-        this.map = place.map;
+        this.maps[this.map.id] = this.map;
+        this.map = this.maps[place.map];
+        this.maps[place.map.id] = null;
         this.player.x = place.x;
         this.player.y = place.y;
         this.map.nextspawn = Math.max(this.map.nextspawn, world.time);
