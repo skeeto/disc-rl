@@ -26,3 +26,10 @@ function capitalize(string) {
 function bonus(stat) {
     return (stat - 10) / 2;
 }
+
+/**
+ * Generate a random ID.
+ */
+function makeId() {
+    return Math.floor(Math.random() * Math.pow(2, 32)).toString(16);
+}

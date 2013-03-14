@@ -13,7 +13,7 @@ function Map(level) {
     this.level = level || 1;
     this.visible = {};
     this.nextspawn = 0;
-    this.id = Math.floor(Math.random() * Math.pow(2, 32)).toString(16);
+    this.id = makeId();
 }
 
 Map.prototype.spawnrate = 250;
