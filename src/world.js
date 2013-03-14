@@ -10,8 +10,6 @@ function World(map) {
     this.map = map || Map.empty();
     this.player = new Player(0, 0);
     this.time = 0;
-    this.spawnrate = 250;
-    this.nextspawn = 0;
     this.focus = {
         x: 0,
         y: 0
@@ -122,8 +120,8 @@ World.prototype.run = function() {
         world.lastSave = world.time;
     }
 
-    while (world.time > this.nextspawn) {
-        this.nextspawn += R.exponential() * this.spawnrate *
+    while (world.time > this.map.nextspawn) {
+        this.map.nextspawn += R.exponential() * this.map.spawnrate *
             Math.max(1, Math.log(this.map.monsters.length));
         // Occasionally spawn higher level monsters
         var mod = Math.floor(R.exponential() * 0.5);

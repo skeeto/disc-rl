@@ -12,7 +12,10 @@ function Map(level) {
     this.monsters = [];
     this.level = level || 1;
     this.visible = {};
+    this.nextspawn = 0;
 }
+
+Map.prototype.spawnrate = 250;
 
 Map.prototype.get = function(x, y) {
     return this.grid[[x, y]];
