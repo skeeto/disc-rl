@@ -2,7 +2,8 @@ var controls = {
     enabled: false,
     target: [],
     auto: false,
-    selected: null
+    selected: null,
+    wait: false
 };
 
 $(window).keypress(function(event) {
@@ -21,6 +22,7 @@ $(window).keypress(function(event) {
         controls.target = [];
         controls.selected = null;
         controls.auto = false;
+        controls.wait = false;
         world.display();
         return false;
         break;
@@ -135,6 +137,10 @@ $(window).keypress(function(event) {
     case 'N'.charCodeAt(0):
         controls.goStraight(1, 1);
         break;
+    case 'W'.charCodeAt(0):
+        controls.wait = true;
+        controls.act();
+        return false;
     case 'o'.charCodeAt(0):
         controls.auto = true;
         controls.act();
@@ -178,6 +184,7 @@ controls.act = function() {
             unimportant('You see %s.', monsters[0]);
             controls.target = [];
             controls.auto = false;
+            controls.wait = false;
             controls.enabled = true;
             return;
         }
@@ -191,6 +198,16 @@ controls.act = function() {
             controls.act();
         } else {
             controls.auto = false;
+        }
+    } else if (controls.wait) {
+        monsters = world.visibleMonsters();
+        if (monsters.length === 0) {
+            setTimeout(function() {
+                world.run();
+            }, 0);
+        } else {
+            controls.wait = false;
+            unimportant('You see %s.', monsters[0]);
         }
     } else {
         controls.enabled = true;
