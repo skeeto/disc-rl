@@ -3,7 +3,8 @@ var controls = {
     target: [],
     auto: false,
     selected: null,
-    wait: false
+    wait: false,
+    waitCount: 0
 };
 
 $(window).keypress(function(event) {
@@ -23,6 +24,7 @@ $(window).keypress(function(event) {
         controls.selected = null;
         controls.auto = false;
         controls.wait = false;
+        unimportant('Action canceled.');
         world.display();
         return false;
         break;
@@ -140,6 +142,7 @@ $(window).keypress(function(event) {
         break;
     case 'W'.charCodeAt(0):
         controls.wait = true;
+        controls.waitCount = 0;
         controls.act();
         return false;
     case 'o'.charCodeAt(0):
@@ -203,6 +206,9 @@ controls.act = function() {
     } else if (controls.wait) {
         monsters = world.visibleMonsters();
         if (monsters.length === 0) {
+            if (controls.waitCount++ % 10 === 0) {
+                unimportant('Waiting for enemies. Press "c" to cancel.');
+            }
             setTimeout(function() {
                 world.run();
             }, 0);
