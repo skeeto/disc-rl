@@ -43,6 +43,11 @@ function corrupt() {
         junk.push(makeJunk(R.random(2, 8)));
     }
     $log.prepend(makeTag(junk.join(' '), 'corrupt'));
+    for (var key in display) {
+        if (key[0] === '$') {
+            display[key].corrupt();
+        }
+    }
 }
 
 function debug(level, message) {

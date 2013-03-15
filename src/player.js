@@ -11,12 +11,12 @@ Mextend(Player, {
 });
 
 Player.prototype.act = function(callback) {
+    controls.act();
     if (world.map.get(this.x, this.y).corrupted) {
         if (R.random() < 0.1) {
             corrupt();
         }
     }
-    controls.act();
 };
 
 Player.prototype.addExperience = function(exp) {
