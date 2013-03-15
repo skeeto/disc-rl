@@ -1,22 +1,20 @@
-## Need to get done
+## For the 7DRL
 
  * map generation
-   * connectedness
-   * more tiles
+   * corruption
  * more monsters
- * ranged attacks
- * spells
+ * items
+   * potions / heal mechanic
+   * scrolls/books?
+ * look-around?
+
+## Long term
+
+ * stores/merchants
+ * "spells"
  * equipment
    * inventory
    * equip
- * items
-   * potions
-   * scrolls/books
  * character creation
    * race
    * classes
- * look-around
-
-## Stretch goals
-
- * stores/merchants
