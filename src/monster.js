@@ -131,12 +131,14 @@ Monster.prototype.isAt = function(x, y) {
 };
 
 Monster.prototype.dist = function(m, y) {
-    var x = m;
-    if (y == null) {
-        x = m.x;
-        y = m.y;
-    }
     var dx = m.x - this.x;
     var dy = m.y - this.y;
     return Math.sqrt(dx * dx + dy * dy);
+};
+
+/**
+ * Tile distance (steps to travel).
+ */
+Monster.prototype.tdist = function(p) {
+    return Math.max(Math.abs(p.x - this.x), Math.abs(p.y - this.y));
 };

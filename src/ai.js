@@ -52,5 +52,58 @@ AI.huntRanged = function(callback) {
     }
 };
 
+AI.skirmisher = function(callback) {
+    var p = world.player;
+    var tdist = this.tdist(p);
+    if (tdist === 1) {
+        this.melee(p);
+        return callback();
+    } else if (tdist < 3) {
+        /* Run away. */
+        debug(10,"run");
+        var dx = this.x - p.x;
+        var dy = this.y - p.y;
+        dx = dx > 0 ? 1 : dx < 0 ? -1 : 0;
+        dy = dy > 0 ? 1 : dy < 0 ? -1 : 0;
+        if (!world.map.get(this.x + dx, this.y + dy).solid) {
+            debug(10, 'easy');
+            this.move(this.x + dx, this.y + dy);
+            return callback();
+        } else {
+            debug(10, 'frantic');
+            var other = [];
+            if (dx === 0) {
+                other.push({x: this.x - 1, y: this.y + dy});
+                other.push({x: this.x + 1, y: this.y + dy});
+            } else if (dy === 0) {
+                other.push({x: this.x + dx, y: this.y - 1});
+                other.push({x: this.x + dx, y: this.y + 1});
+            } else {
+                other.push({x: this.x, y: this.y + dy});
+                other.push({x: this.x + dx, y: this.y});
+            }
+            other = other.randomize();
+            for (var i = 0; i < other.length; i++) {
+                if (!world.map.get(other[i].x, other[i].y).solid) {
+                    this.move(other[i].x, other[i].y);
+                    return callback();
+                }
+            }
+            /* Nowhere to run. */
+            debug(10,"cornered");
+            return AI.huntMelee.call(this, callback);
+        }
+    } else if (world.isVisible(this.x, this.y)) {
+        /* Attack */
+        debug(10,"range");
+        this.ranged(world.player);
+        return callback();
+    } else {
+        /* Seek */
+        debug(10,"seek");
+        return AI.huntMelee.call(this, callback);
+    }
+};
+
 /* Make the melee hunter the default. */
 Monster.prototype.act = AI.huntMelee;
