@@ -61,6 +61,10 @@ Monster.prototype.attack = function(target, base) {
     var place = world.map.get(this.x, this.y);
     var tplace = world.map.get(target.x, target.y);
 
+    if (this.player && place.corrupted) {
+        unimportant('Standing in corruption is making you less effective.');
+    }
+
     var roll = d20();
     var basemod = bonus(this[base] + place.modify(base));
     var tdex = bonus(target.dexterity + tplace.modify('dexterity'));
