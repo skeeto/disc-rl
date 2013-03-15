@@ -36,3 +36,10 @@
 .Byte:after {
     content: 'B';
 }
+
+.Virus {
+    color: orange;
+}
+.Virus:after {
+    content: 'V';
+}

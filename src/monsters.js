@@ -97,3 +97,13 @@ Mextend(Byte, {
     dexterity: 4,
     mind: 8
 });
+
+function Virus() { this.init(arguments); }
+Mextend(Virus, {
+    level: 3,
+    strength: 7,
+    dexterity: 11,
+    mind: 14,
+    name: '(W32|Fake|WOW|Generic).vsV.(Trojan|Worm|Backdoor)'
+});
+Virus.prototype.act = AI.huntRanged;
