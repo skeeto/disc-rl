@@ -40,10 +40,11 @@ $(window).keypress(function(event) {
         case 'f'.charCodeAt(0):
             var m = world.monsterAt(controls.selected.x, controls.selected.y);
             if (m) {
-                world.player.ranged(m);
+                world.player.ranged(m, function() {
+                    world.run();
+                });
                 controls.enabled = false;
                 controls.selected = null;
-                world.run();
             } else {
                 alert('nothing?');
                 controls.selected = null;

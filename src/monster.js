@@ -111,7 +111,7 @@ Monster.prototype.melee = function(target) {
     this.attack(target, 'strength');
 };
 
-Monster.prototype.ranged = function(target) {
+Monster.prototype.ranged = function(target, callback) {
     if (this.player) {
         unimportant('You throw your disc at %s!', target);
     } else if (target.player) {
@@ -121,6 +121,9 @@ Monster.prototype.ranged = function(target) {
     }
     this.attack(target, 'dexterity');
     this.thrown = true;
+    if (callback) {
+        display.throwDisc(this, target, callback);
+    }
 };
 
 /**

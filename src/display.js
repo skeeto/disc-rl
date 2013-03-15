@@ -151,3 +151,25 @@ display.$mana = $('#mana');
 display.$strength = $('#strength');
 display.$dexterity = $('#dexterity');
 display.$mind = $('#mind');
+display.$disc = $('#disc');
+
+display.throwDisc = function(source, dest, callback) {
+    var complete = function() {
+        this.$disc.hide();
+        if (callback) {
+            callback();
+        }
+    }.bind(this);
+    var h2 = this.$disc.height() / 2;
+    var a = this.get(source.x, source.y).$tile.position();
+    var b = this.get(dest.x, dest.y).$tile.position();
+    this.$disc.css({
+        top: (a.top + h2) + 'px',
+        left: (a.left + h2) + 'px'
+    });
+    this.$disc.show();
+    this.$disc.animate({
+        top: (b.top + h2) + 'px',
+        left: (b.left + h2) + 'px'
+    }, 200, 'linear', complete);
+};

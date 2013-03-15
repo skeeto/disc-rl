@@ -3,6 +3,18 @@ body {
     background: #222;
 }
 
+#disc {
+    display: none;
+    background: blue;
+    width: 12px;
+    height: 12px;
+    position: absolute;
+    z-index: 100;
+    border-radius: 32px;
+    border: 2px solid white;
+    box-shadow: 0 0 10px lightblue;
+}
+
 .tile {
     width: 32px;
     height: 32px;
@@ -31,7 +43,7 @@ body {
     margin-left: -300px;
     left: 50%;
     color: white;
-    z-index: 100;
+    z-index: 50;
     background: #001;
     padding: 30px;
     box-shadow: 0 0 15px #aaa;

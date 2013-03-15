@@ -45,8 +45,7 @@ AI.huntMelee = function(callback) {
 
 AI.huntRanged = function(callback) {
     if (world.isVisible(this.x, this.y)) {
-        this.ranged(world.player);
-        callback();
+        this.ranged(world.player, callback);
     } else {
         AI.huntMelee.call(this, callback);
     }
@@ -91,8 +90,7 @@ AI.skirmisher = function(callback) {
         }
     } else if (world.isVisible(this.x, this.y)) {
         /* Attack */
-        this.ranged(world.player);
-        return callback();
+        return this.ranged(world.player, callback);
     } else {
         /* Seek */
         return AI.huntMelee.call(this, callback);
