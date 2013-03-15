@@ -41,7 +41,7 @@
 /* Level 3 */
 
 .Byte {
-    color: pink;
+    color: orange;
 }
 .Byte:after {
     content: '*';
@@ -57,14 +57,14 @@
 /* Level 4 */
 
 .AntiVirus {
-    color: pink;
+    color: #f0f;
 }
 .AntiVirus:after {
     content: 'A';
 }
 
 .Browser {
-    color: pink;
+    color: #f0f;
 }
 .Browser:after {
     content: 'B';
