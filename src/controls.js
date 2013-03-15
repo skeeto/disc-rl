@@ -244,7 +244,7 @@ controls.goStairs = function(type) {
         controls.act();
         return true;
     } else {
-        log('No such stairs are known.');
+        log('No buses for that direction are known.');
         return false;
     }
 };
