@@ -116,3 +116,14 @@ Monster.prototype.ranged = function(target) {
 Monster.prototype.isAt = function(x, y) {
     return this.x === x && this.y === y;
 };
+
+Monster.prototype.dist = function(m, y) {
+    var x = m;
+    if (y == null) {
+        x = m.x;
+        y = m.y;
+    }
+    var dx = m.x - this.x;
+    var dy = m.y - this.y;
+    return Math.sqrt(dx * dx + dy * dy);
+};

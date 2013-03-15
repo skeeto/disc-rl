@@ -10,6 +10,12 @@ AI.randomWalk =  function(callback) {
 AI.huntMelee = function(callback) {
     var path = [];
     var player = world.player;
+    if (!this.awake && this.dist(player) > 10) {
+        AI.randomWalk.call(this, callback); /* Wander */
+        return;
+    } else {
+        this.awake = true; /* Wake up. */
+    }
     var that = this;
     var visible = function(x, y) {
         if (world.isSolid(x, y)) {
