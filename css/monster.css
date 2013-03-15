@@ -5,11 +5,13 @@
     content: '@'
 }
 
+/* Level 1 */
+
 .Bit {
     color: pink;
 }
 .Bit:after {
-    content: 'b';
+    content: '.';
 }
 
 .Script {
@@ -18,6 +20,8 @@
 .Script:after {
     content: 's';
 }
+
+/* Level 2 */
 
 .Adware {
     color: red;
@@ -33,11 +37,13 @@
     content: 'y'
 }
 
+/* Level 3 */
+
 .Byte {
     color: pink;
 }
 .Byte:after {
-    content: 'B';
+    content: '*';
 }
 
 .Virus {
@@ -45,4 +51,20 @@
 }
 .Virus:after {
     content: 'V';
+}
+
+/* Level 4 */
+
+.AntiVirus {
+    color: pink;
+}
+.AntiVirus:after {
+    content: 'A';
+}
+
+.Browser {
+    color: pink;
+}
+.Browser:after {
+    content: 'B';
 }

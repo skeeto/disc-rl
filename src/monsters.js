@@ -107,3 +107,20 @@ Mextend(Virus, {
     name: '(W32|Fake|WOW|Generic).vsV.(Trojan|Worm|Backdoor)'
 });
 Virus.prototype.act = AI.huntRanged;
+
+/* Level 4 */
+
+function AntiVirus() { this.init(arguments); }
+Mextend(AntiVirus, {
+    level: 4,
+    strength: 12,
+    dexterity: 12
+});
+
+function Browser() { this.init(arguments); }
+Mextend(Browser, {
+    level: 4,
+    strength: 12,
+    dexterity: 18
+});
+Browser.prototype.act = AI.skirmisher;
