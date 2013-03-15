@@ -11,7 +11,7 @@ AI.huntMelee = function(callback) {
     var path = [];
     var player = world.player;
     if (!this.awake && this.dist(player) > 10) {
-        AI.randomWalk.call(this, callback); /* Wander */
+        callback(); /* Do nothing */
         return;
     } else {
         this.awake = true; /* Wake up. */
