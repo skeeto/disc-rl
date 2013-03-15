@@ -158,8 +158,15 @@ World.prototype.save = function() {
  */
 World.load = function() {
     if (Save.exists('world')) {
-        Save.load('world');
-        if (world.version !== WORLD_VERSION) {
+        try {
+            Save.load('world');
+            if (world.version !== WORLD_VERSION) {
+                world = null;
+                return false;
+            }
+        } catch (e) {
+            /* Load failed, give up. */
+            Save.clear('world');
             world = null;
             return false;
         }
