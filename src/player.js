@@ -35,7 +35,7 @@ Player.prototype.levelUp = function() {
     this.maxmp += mproll;
     this.mp += mproll;
     if ((this.level % 3) === 0) this.strength++; // XXX
-    important("You have reached level %d!", this.level);
+    important("You are now at version %d.0!", this.level);
 };
 
 Player.prototype.nextLevel = function() {
