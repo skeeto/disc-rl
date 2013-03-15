@@ -25,7 +25,10 @@ World.prototype.display = function() {
     this.map.computeVisible(this.player);
     this.map.display();
     this.map.monsters.forEach(withThis('display'));
-    if (this.active) this.player.display();
+    if (this.active) {
+        this.player.display();
+        controls.display();
+    }
 
     /* Stats */
     display.$name.text(this.player.name);
@@ -245,5 +248,37 @@ World.prototype.nearest = function(f, x, y) {
         return {x: select[0], y: select[1]};
     } else {
         return null;
+    }
+};
+
+World.prototype.selectNext = function(reverse) {
+    var that = this;
+    var monsters = this.map.monsters.filter(function(m) {
+        return that.isVisible(m.x, m.y);
+    });
+    if (monsters.length > 0) {
+        if (controls.selected) {
+            var x = controls.selected.x, y = controls.selected.y;
+            for (var i = 0; i < monsters.length; i++) {
+                if (monsters[i].x === x && monsters[i].y === y) {
+                    if (reverse) {
+                        controls.selected =
+                            monsters[(i - 1 + monsters.length)
+                                     % monsters.length];
+                    } else {
+                        controls.selected =
+                            monsters[(i + 1) % monsters.length];
+                    }
+                    return true;
+                }
+                controls.selected = monsters[0];
+                return true;
+            }
+        } else {
+            controls.selected = monsters[0];
+            return true;
+        }
+    } else {
+        return false;
     }
 };

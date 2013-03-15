@@ -53,14 +53,15 @@ Monster.prototype.act = function(callback) {
 };
 
 /**
- * Perform a melee attack on a target.
+ * Perform an attack on a target.
  * @param {Monster} target
  */
-Monster.prototype.melee = function(target) {
+Monster.prototype.attack = function(target, base) {
     var roll = d20();
-    var str = bonus(this.strength);
+    var basemod = bonus(this[base]);
     var tdex = bonus(target.dexterity);
-    var damage = Math.max(0, this.weapon.damage() + str);
+    var damage = Math.max(0, this.weapon.damage());
+    if (base === 'strength') damage += bonus(this.strength);
     var qualifier = ' ';
     var hits = 'hits';
     var misses = 'misses';
@@ -74,13 +75,21 @@ Monster.prototype.melee = function(target) {
         damage *= 2;
         qualifier = 'critically ';
     }
-    if (roll === 20 || roll + str + this.level > 10 + tdex + target.armor) {
+    if (roll === 20 || roll + basemod + this.level > 10 + tdex + target.armor) {
         unimportant('%s %s %s %s for %d damage.', name, qualifier, hits,
                     target.player ? 'you': target, damage);
         target.damage(damage);
     } else {
         unimportant('%s %s %s.', this, misses, target.player ? 'you' : target);
     }
+};
+
+Monster.prototype.melee = function(target) {
+    this.attack(target, 'strength');
+};
+
+Monster.prototype.ranged = function(target) {
+    this.attack(target, 'dexterity');
 };
 
 /**

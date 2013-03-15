@@ -1,7 +1,8 @@
 var controls = {
     enabled: false,
     target: [],
-    auto: false
+    auto: false,
+    selected: null
 };
 
 $(window).keypress(function(event) {
@@ -23,6 +24,30 @@ $(window).keypress(function(event) {
 
     if (!controls.enabled) {
         return true;
+    }
+
+    if (controls.selected) {
+        switch (event.which) {
+        case 'f'.charCodeAt(0):
+            var m = world.monsterAt(controls.selected.x, controls.selected.y);
+            if (m) {
+                world.player.ranged(m);
+                controls.enabled = false;
+                controls.selected = null;
+                world.run();
+            } else {
+                alert('nothing?');
+                controls.selected = null;
+            }
+            return false;
+            break;
+        case 'h'.charCodeAt(0):
+            world.selectNext();
+            break;
+        case 'l'.charCodeAt(0):
+            world.selectNext(true);
+            break;
+        }
     }
 
     var dx = null, dy = null;
@@ -59,6 +84,11 @@ $(window).keypress(function(event) {
     case 'n'.charCodeAt(0):
         dx = 1;
         dy = 1;
+        break;
+    case 'f'.charCodeAt(0):
+        world.selectNext();
+        world.display();
+        return false;
         break;
     case '>'.charCodeAt(0):
     case '<'.charCodeAt(0):
@@ -203,5 +233,11 @@ controls.goStairs = function(type) {
     } else {
         log('No such stairs are known.');
         return false;
+    }
+};
+
+controls.display = function() {
+    if (this.selected) {
+        display.add(this.selected.x, this.selected.y, 'selected');
     }
 };
