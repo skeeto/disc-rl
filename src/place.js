@@ -10,9 +10,14 @@ function Place() {
 
 Place.prototype.solid = false;
 Place.prototype.seen = false;
+Place.prototype.modifier = {};
 
 Place.prototype.toString = function() {
     return 'a ' + this.constructor.name.toLowerCase();
+};
+
+Place.prototype.modify = function(name) {
+    return this.modifier[name] || 0;
 };
 
 /* Types of places. */
@@ -24,6 +29,14 @@ Wall.prototype.solid = true;
 function WallCorruption() { Wall.call(this); }
 WallCorruption.extend(Wall);
 WallCorruption.prototype.corrupted = true;
+WallCorruption.prototype.modifier = {
+    strength: -1,
+    dexterity: -1,
+    mind: -1,
+    hit: -1,
+    ac: -1,
+    damage: -1
+};
 WallCorruption.prototype.toString = function() {
     return 'a corrupted wall';
 };
@@ -34,6 +47,13 @@ Floor.extend(Place);
 function FloorCorruption() { Floor.call(this); }
 FloorCorruption.extend(Floor);
 FloorCorruption.prototype.corrupted = true;
+FloorCorruption.prototype.modifier = {
+    strength: -1,
+    dexterity: -1,
+    mind: -1,
+    hit: -1,
+    ac: -1
+};
 FloorCorruption.prototype.toString = function() {
     return 'a corrupted floor';
 };

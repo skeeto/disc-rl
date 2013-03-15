@@ -58,11 +58,16 @@ Monster.prototype.act = function(callback) {
  * @param {Monster} target
  */
 Monster.prototype.attack = function(target, base) {
+    var place = world.map.get(this.x, this.y);
+    var tplace = world.map.get(target.x, target.y);
+
     var roll = d20();
-    var basemod = bonus(this[base]);
-    var tdex = bonus(target.dexterity);
-    var damage = this.weapon.damage();
-    if (base === 'strength') damage += bonus(this.strength);
+    var basemod = bonus(this[base] + place.modify(base));
+    var tdex = bonus(target.dexterity + tplace.modify('dexterity'));
+    var damage = this.weapon.damage() + place.modify('damage');
+    if (base === 'strength') {
+        damage += bonus(this.strength + place.modify('strength'));
+    }
     damage = Math.max(0, damage);
 
     var qualifier = ' ';
@@ -71,8 +76,9 @@ Monster.prototype.attack = function(target, base) {
         qualifier = 'critically ';
     }
 
-    var attack = roll + basemod + this.level;
-    var ac = 10 + tdex + target.armor + (target.thrown ? 0 : 2);
+    var attack = roll + basemod + this.level + place.modify('hit');
+    var ac = 10 + tdex + target.armor + tplace.modify('ac') +
+            (target.thrown ? 0 : 2);
     if (roll === 20 || attack > ac) {
         if (this.player) {
             unimportant('You %shit %s for %d damage.',
