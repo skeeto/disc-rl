@@ -52,14 +52,14 @@ function Mextend(constructor, props) {
 
 /* Level 1 */
 
-function Bot() { this.init(arguments); }
-Mextend(Bot, {
+function Bit() { this.init(arguments); }
+Mextend(Bit, {
     level: 1,
     strength: 2,
     dexterity: 2,
     mind: 2
 });
-Bot.prototype.act = AI.randomWalk;
+Bit.prototype.act = AI.randomWalk;
 
 function Script() { this.init(arguments); }
 Mextend(Script, {

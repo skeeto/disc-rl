@@ -2,12 +2,12 @@
     content: '@'
 }
 
-.Bot {
+.Bit {
     color: pink;
 }
 
-.Bot:after {
-    content: 'x';
+.Bit:after {
+    content: 'b';
 }
 
 .Script {
