@@ -9,9 +9,10 @@
 
 .Bit {
     color: pink;
+    font-weight: bold;
 }
 .Bit:after {
-    content: '.';
+    content: '·';
 }
 
 .Script {
