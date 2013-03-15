@@ -5,7 +5,6 @@
 .Bit {
     color: pink;
 }
-
 .Bit:after {
     content: 'b';
 }
@@ -13,7 +12,6 @@
 .Script {
     color: pink;
 }
-
 .Script:after {
     content: 's';
 }
@@ -21,7 +19,6 @@
 .Adware {
     color: red;
 }
-
 .Adware:after {
     content: 'a';
 }
@@ -29,7 +26,13 @@
 .Spyware {
     color: red;
 }
-
 .Spyware:after {
     content: 'y'
+}
+
+.Byte {
+    color: pink;
+}
+.Byte:after {
+    content: 'B';
 }

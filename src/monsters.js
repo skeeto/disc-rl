@@ -87,3 +87,13 @@ Mextend(Spyware, {
     dexterity: 14,
     mind: 8
 });
+
+/* Level 3 */
+
+function Byte() { this.init(arguments); }
+Mextend(Byte, {
+    level: 3,
+    strength: 12,
+    dexterity: 4,
+    mind: 8
+});
