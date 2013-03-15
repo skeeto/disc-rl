@@ -33,3 +33,11 @@ function bonus(stat) {
 function makeId() {
     return Math.floor(Math.random() * Math.pow(2, 32)).toString(16);
 }
+
+function makeJunk(n) {
+    var junk = [];
+    for (var i = 0; i < n; i++) {
+        junk.push(String.fromCharCode(R.random(33, 1000)));
+    }
+    return junk.join('');
+};

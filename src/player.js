@@ -11,6 +11,11 @@ Mextend(Player, {
 });
 
 Player.prototype.act = function(callback) {
+    if (world.map.get(this.x, this.y).corrupted) {
+        if (R.random() < 0.1) {
+            corrupt();
+        }
+    }
     controls.act();
 };
 

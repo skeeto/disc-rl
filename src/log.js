@@ -37,6 +37,14 @@ function important(message) {
     $log.prepend(makeTag(capitalize(text), 'important'));
 }
 
+function corrupt() {
+    var junk = [];
+    for (var i = 0; i < R.random(6, 12); i++) {
+        junk.push(makeJunk(R.random(2, 8)));
+    }
+    $log.prepend(makeTag(junk.join(' '), 'corrupt'));
+}
+
 function debug(level, message) {
     if (level <= DEBUG) {
         var text = vsprintf(message, _slice.call(arguments, 2));

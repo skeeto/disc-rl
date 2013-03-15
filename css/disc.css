@@ -172,6 +172,10 @@ body {
     color: yellow;
 }
 
+span.corrupt {
+    color: #0f0;
+}
+
 #minimap {
     width: 320px;
     height: 320px;
