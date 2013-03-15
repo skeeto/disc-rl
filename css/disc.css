@@ -209,7 +209,7 @@ body {
 }
 
 #level:before {
-    content: 'level '
+    content: 'version '
 }
 
 #level:after {

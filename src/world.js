@@ -32,7 +32,8 @@ World.prototype.display = function() {
 
     /* Stats */
     display.$name.text(this.player.name);
-    display.$level.text(this.player.level);
+    display.$level.text(this.player.level + '.' +
+                        ~~(this.player.experience / 14));
     display.$dlevel.text(this.map.level);
     display.$experience.text(this.player.experience +
                              ' / ' + this.player.nextLevel());
