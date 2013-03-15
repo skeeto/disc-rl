@@ -17,6 +17,13 @@ $(window).keypress(function(event) {
             world.run();
         }
         break;
+    case 'c'.charCodeAt(0):
+        controls.target = [];
+        controls.selected = null;
+        controls.auto = false;
+        world.display();
+        return false;
+        break;
     case 13:
         $('#overlay').hide();
         break;
