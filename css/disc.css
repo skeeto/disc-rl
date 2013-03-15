@@ -173,17 +173,18 @@ body {
 }
 
 #stats {
-    width: 300px;
+    width: 280px;
     border: 1px solid gray;
-    /* height: 570px; */
     position: absolute;
     left: 485px;
     top: 330px;
-    background: lightblue;
-    padding: 10px;
+    background: #001;
+    color: white;
+    padding: 20px;
 }
 
 #name {
+    color: yellow;
     display: block;
     font-size: 26px;
     font-weight: bold;
@@ -191,6 +192,7 @@ body {
 }
 
 #level, #dlevel {
+    color: #ff7;
     font-size: 16px;
     font-weight: bold;
     display: inline-block;
@@ -212,6 +214,7 @@ body {
 .stat label {
     display: inline-block;
     width: 100px;
+    color: gray;
 }
 
 .stat .value {
