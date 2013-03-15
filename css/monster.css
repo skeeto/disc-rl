@@ -25,3 +25,11 @@
 .Adware:after {
     content: 'a';
 }
+
+.Spyware {
+    color: red;
+}
+
+.Spyware:after {
+    content: 'y'
+}

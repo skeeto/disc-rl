@@ -79,3 +79,11 @@ Mextend(Adware, {
     dexterity: 5,
     mind: 4
 });
+
+function Spyware() { this.init(arguments); }
+Mextend(Spyware, {
+    level: 2,
+    strength: 3,
+    dexterity: 14,
+    mind: 8
+});
