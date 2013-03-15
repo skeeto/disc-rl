@@ -6,7 +6,6 @@
 
 ## Ideas
 
- * corrupted display
  * log taunts
 
 ## Long term
