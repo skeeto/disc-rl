@@ -43,9 +43,11 @@ $(window).keypress(function(event) {
             break;
         case 'h'.charCodeAt(0):
             world.selectNext();
+            return false;
             break;
         case 'l'.charCodeAt(0):
             world.selectNext(true);
+            return false;
             break;
         }
     }
