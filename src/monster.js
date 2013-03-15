@@ -65,24 +65,33 @@ Monster.prototype.attack = function(target, base) {
     damage = Math.max(0, damage);
 
     var qualifier = ' ';
-    var hits = 'hits';
-    var misses = 'misses';
-    var name = this.toString();
-    if (this.player) {
-        name = 'you';
-        hits = 'hit';
-        misses = 'miss';
-    }
     if (roll === 20) {
         damage *= 2;
         qualifier = 'critically ';
     }
-    if (roll === 20 || roll + basemod + this.level > 10 + tdex + target.armor) {
-        unimportant('%s %s %s %s for %d damage.', name, qualifier, hits,
-                    target.player ? 'you': target, damage);
+
+    var attack = roll + basemod + this.level;
+    var ac = 10 + tdex + target.armor;
+    if (roll === 20 || attack > ac) {
+        if (this.player) {
+            unimportant('You %shit %s for %d damage.',
+                        qualifier, target, damage);
+        } else if (target.player) {
+            unimportant('%s %shits you for %d damage.',
+                        this, qualifier, damage);
+        } else {
+            unimportant('%s %shits %s for %d damage.',
+                        this, qualifier, target, damage);
+        }
         target.damage(damage);
     } else {
-        unimportant('%s %s %s.', this, misses, target.player ? 'you' : target);
+        if (this.player) {
+            unimportant('You %smiss %s.', qualifier, target);
+        } else if (target.player) {
+            unimportant('%s %smisses you.', this, qualifier);
+        } else {
+            unimportant('%s %smisses %s.', this, qualifier, target);
+        }
     }
 };
 
