@@ -1,12 +1,13 @@
 ## For the 7DRL
 
- * map generation
-   * corruption
  * more monsters
- * items
-   * potions / heal mechanic
-   * scrolls/books?
  * look-around?
+ * end game
+
+## Ideas
+
+ * corrupted display
+ * log taunts
 
 ## Long term
 
@@ -18,3 +19,6 @@
  * character creation
    * race
    * classes
+ * items
+   * potions / heal mechanic
+   * scrolls/books?
