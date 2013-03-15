@@ -8,6 +8,7 @@ function overlay(name) {
                 $overlay.hide();
             }));
     });
+    return false;
 }
 
 function printHelp() {

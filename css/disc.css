@@ -43,16 +43,17 @@ body {
     margin: 2px;
     background: #bbb;
     color: black;
-    width: 10px;
     display: inline-block;
     width: 20px;
     text-align: center;
     font-weight: bold;
+    text-indent: 0;
 }
 
 #overlay table {
-    margin: 0 auto;
+    margin: 0 10px;
     text-align: center;
+    float: right;
 }
 
 #overlay .button {
@@ -77,6 +78,7 @@ body {
                                               rgb(214,185,0) 59%);
     background-image: -ms-linear-gradient(bottom, rgb(130,82,0) 15%,
                                           rgb(214,185,0) 59%);
+    clear: both;
 }
 
 #overlay h1, #overlay h2, #overlay h3, #overlay h4 {
