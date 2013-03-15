@@ -7,6 +7,7 @@
 ## Ideas
 
  * log taunts
+ * curruption attack/defense penalty
 
 ## Long term
 
