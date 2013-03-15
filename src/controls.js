@@ -50,12 +50,16 @@ $(window).keypress(function(event) {
             break;
         case 'h'.charCodeAt(0):
             world.selectNext();
+            world.display();
             return false;
             break;
         case 'l'.charCodeAt(0):
             world.selectNext(true);
+            world.display();
             return false;
             break;
+        default:
+            return true;
         }
     }
 
