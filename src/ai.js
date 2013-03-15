@@ -43,5 +43,14 @@ AI.huntMelee = function(callback) {
     callback();
 };
 
+AI.huntRanged = function(callback) {
+    if (world.isVisible(this.x, this.y)) {
+        this.ranged(world.player);
+        callback();
+    } else {
+        AI.huntMelee.call(this, callback);
+    }
+};
+
 /* Make the melee hunter the default. */
 Monster.prototype.act = AI.huntMelee;
