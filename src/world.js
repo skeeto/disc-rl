@@ -256,6 +256,9 @@ World.prototype.selectNext = function(reverse) {
     var monsters = this.map.monsters.filter(function(m) {
         return that.isVisible(m.x, m.y);
     });
+    monsters.sort(function(a, b) {
+        return a.dist(world.player) - b.dist(world.player);
+    });
     if (monsters.length > 0) {
         if (controls.selected) {
             var x = controls.selected.x, y = controls.selected.y;
