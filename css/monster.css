@@ -12,7 +12,7 @@
     font-weight: bold;
 }
 .Bit:after {
-    content: '·';
+    content: '.';
 }
 
 .Script {
