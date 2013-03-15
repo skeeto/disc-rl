@@ -91,6 +91,13 @@ Monster.prototype.melee = function(target) {
 };
 
 Monster.prototype.ranged = function(target) {
+    if (this.player) {
+        unimportant('You throw your disc at %s!', target);
+    } else if (target.player) {
+        unimportant('%s throws its disc at you!', this);
+    } else {
+        unimportant('%s throws its disc at %s!', this, target);
+    }
     this.attack(target, 'dexterity');
 };
 
