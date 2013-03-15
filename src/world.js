@@ -2,7 +2,7 @@
  * Exports: World, world
  */
 
-var WORLD_VERSION = 2;
+var WORLD_VERSION = 3;
 var DUNGEON_SIZE = 100;
 
 var world = null;
