@@ -21,8 +21,22 @@ function Wall() { Place.call(this); }
 Wall.extend(Place);
 Wall.prototype.solid = true;
 
+function WallCorruption() { Wall.call(this); }
+WallCorruption.extend(Wall);
+WallCorruption.prototype.corrupted = true;
+WallCorruption.prototype.toString = function() {
+    return 'a corrupted wall';
+};
+
 function Floor() { Place.call(this); }
 Floor.extend(Place);
+
+function FloorCorruption() { Floor.call(this); }
+FloorCorruption.extend(Floor);
+FloorCorruption.prototype.corrupted = true;
+FloorCorruption.prototype.toString = function() {
+    return 'a corrupted floor';
+};
 
 function Stair(map)  {
     Place.call(this);

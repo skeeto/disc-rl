@@ -176,7 +176,8 @@ World.prototype.useStairs = function() {
     var place = this.map.get(this.player.x, this.player.y);
     if (place instanceof Stair) {
         if (!place.map) {
-            var map = Map.dungeon(DUNGEON_SIZE, DUNGEON_SIZE);
+            var map = Map.dungeon(DUNGEON_SIZE, DUNGEON_SIZE,
+                                  this.map.level / 10);
             this.maps[map.id] = map;
             place.map = map.id;
             map.level = this.map.level + 1;
@@ -214,7 +215,7 @@ World.prototype.visibleMonsters = function() {
 
 World.reset = function() {
     log('Greetings, program.');
-    world = new World(Map.dungeon(DUNGEON_SIZE));
+    world = new World(Map.dungeon(DUNGEON_SIZE, DUNGEON_SIZE));
     var start = world.map.random(function(place) { return !place.solid; });
     world.player.move(start.x, start.y);
     world.look();

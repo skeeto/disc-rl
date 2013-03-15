@@ -161,11 +161,22 @@ Map.random = function(seed, w, h) {
     return map;
 };
 
-Map.dungeon = function(w, h) {
+Map.dungeon = function(w, h, corruption) {
     var gen = new ROT.Map.Digger(w, h);
     var map = new Map();
     gen.create(function(x, y, value) {
-        map.grid[[x, y]] = value ? new Wall() : new Floor();
+        var corrupt = R.random() < corruption;
+        var place = null;
+        if (corrupt && value) {
+            place = new WallCorruption();
+        } else if (!corrupt && value) {
+            place = new Wall();
+        } else if (corrupt && !value) {
+            place = new FloorCorruption();
+        } else {
+            place = new Floor();
+        }
+        map.grid[[x, y]] = place;
     });
     map.addStair(null);
     return map;

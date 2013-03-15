@@ -6,6 +6,14 @@
     background: #003;
 }
 
+.FloorCorruption {
+    background: #4a4;
+}
+
+.WallCorruption {
+    background: #030;
+}
+
 .StairUp {
     background: #44f;
 }
