@@ -62,7 +62,8 @@ Monster.prototype.attack = function(target, base) {
     var tplace = world.map.get(target.x, target.y);
 
     if (this.player && place.corrupted) {
-        unimportant('Standing in corruption is making you less effective.');
+        unimportant('You notice that standing in corruption is making you ' +
+                    'less effective in combat.');
     }
 
     var roll = d20();
