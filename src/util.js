@@ -42,9 +42,7 @@ function makeJunk(n) {
     return junk.join('');
 };
 
-$(document).ready(function() {
-    $.fn.corrupt = function() {
-        var junk = makeJunk(this.text().length);
-        this.empty().append($('<span/>').addClass('corrupt').text(junk));
-    };
-});
+$.fn.corrupt = function() {
+    var junk = makeJunk(this.text().length);
+    this.empty().append($('<span/>').addClass('corrupt').text(junk));
+};
