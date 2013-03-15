@@ -39,5 +39,5 @@ Player.prototype.levelUp = function() {
 };
 
 Player.prototype.nextLevel = function() {
-    return Math.ceil(Math.pow(this.level + 5, 2.5));
+    return Math.ceil(Math.pow(this.level + 8, 2.1));
 };
