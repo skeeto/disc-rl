@@ -125,12 +125,13 @@ Map.prototype.display = function() {
                     ctx.globalAlpha = 0.5;
                 }
                 if (place.solid) {
-                    ctx.fillStyle = 'blue';
+                    ctx.fillStyle = place.corrupted ? 'green' : 'blue';
                 } else if (place instanceof Stair) {
                     ctx.fillStyle = 'yellow';
                     ctx.globalAlpha = 1;
                 } else {
-                    ctx.fillStyle = 'lightgray';
+                    ctx.fillStyle =
+                        place.corrupted ? 'lightgreen' : 'lightgray';
                 }
                 ctx.fillRect((x - cx) * s + MINIMAP_RADIUS * s,
                              (y - cy) * s + MINIMAP_RADIUS * s,
