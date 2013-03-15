@@ -232,3 +232,7 @@ body {
 #strength {
     margin-top: 10px;
 }
+
+#stats label.mind, #stats label.mana, #mana, #mind {
+    display: none;
+}
