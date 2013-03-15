@@ -29,12 +29,23 @@ Player.prototype.levelUp = function() {
     this.experience -= this.nextLevel();
     this.level += 1;
     var hproll = d6();
+    for (var i = 1; i < bonus(this.strength); i++) hproll += d6();
     this.maxhp += hproll;
     this.hp = this.maxhp;
     var mproll = d6();
     this.maxmp += mproll;
     this.mp += mproll;
-    if ((this.level % 3) === 0) this.strength++; // XXX
+    switch (this.level % 3) {
+    case 0:
+        this.strength++;
+        break;
+    case 1:
+        this.dexterity++;
+        break;
+    case 2:
+        this.mind++;
+        break;
+    }
     important("You are now at version %d.0!", this.level);
 };
 
