@@ -8,6 +8,7 @@
 
  * corrupted display
  * log taunts
+ * thrown block penalty?
 
 ## Long term
 
