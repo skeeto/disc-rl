@@ -6,6 +6,7 @@ function Monster(x, y, name) {
     this.x = x || 0;
     this.y = y || 0;
     this.timer = 0;
+    this.thrown = false;
 }
 
 Monster.prototype.display = function() {
@@ -71,7 +72,7 @@ Monster.prototype.attack = function(target, base) {
     }
 
     var attack = roll + basemod + this.level;
-    var ac = 10 + tdex + target.armor;
+    var ac = 10 + tdex + target.armor + (target.thrown ? 0 : 2);
     if (roll === 20 || attack > ac) {
         if (this.player) {
             unimportant('You %shit %s for %d damage.',
@@ -108,6 +109,7 @@ Monster.prototype.ranged = function(target) {
         unimportant('%s throws its disc at %s!', this, target);
     }
     this.attack(target, 'dexterity');
+    this.thrown = true;
 };
 
 /**

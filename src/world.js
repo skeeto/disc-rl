@@ -136,6 +136,7 @@ World.prototype.run = function() {
 
     var mover = movers.pop();
     mover.timer = Math.max(20 - bonus(mover.dexterity), 1);
+    mover.thrown = false;
     mover.act(this.run.bind(this));
 };
 
