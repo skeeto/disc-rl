@@ -243,7 +243,8 @@ World.prototype.visibleMonsters = function() {
 
 World.reset = function() {
     log('Greetings, program.');
-    world = new World(Map.dungeon(DUNGEON_SIZE, DUNGEON_SIZE));
+    world = new World(Map.dungeon(DUNGEON_SIZE / 2, DUNGEON_SIZE / 2));
+    world.map.spawnrate *= 0.7;
     var start = world.map.random(function(place) { return !place.solid; });
     world.player.move(start.x, start.y);
     world.look();

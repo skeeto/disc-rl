@@ -16,7 +16,7 @@ function Map(level) {
     this.id = makeId();
 }
 
-Map.prototype.spawnrate = 250; /* Lower is faster. */
+Map.prototype.spawnrate = 200; /* Lower is faster. */
 
 Map.prototype.get = function(x, y) {
     return this.grid[[x, y]];
