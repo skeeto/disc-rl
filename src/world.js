@@ -114,7 +114,8 @@ World.prototype.remove = function(monster) {
 World.prototype.run = function() {
     if (!this.active) return;
     if (world.map.get(this.player.x, this.player.y) instanceof Tower) {
-        debug(10, 'you win');
+        overlay('win');
+        important('Your User transfers you back home to safety.');
         this.display();
         this.gameOver();
         return;
