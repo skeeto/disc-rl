@@ -36,9 +36,17 @@ World.prototype.display = function() {
     display.$level.text(this.player.level + '.' +
                         ~~(this.player.experience / 14));
     display.$dlevel.text(this.map.level);
+
     display.$experience.text(this.player.experience +
                              ' / ' + this.player.nextLevel());
+    var perc = Math.floor(this.player.experience * 100 /
+                          this.player.nextLevel());
+    display.$expfill.css('width', perc + '%');
+
     display.$health.text(this.player.hp + ' / ' + this.player.maxhp);
+    perc = Math.floor(this.player.hp * 100 / this.player.maxhp);
+    display.$hpfill.css('width', perc + '%');
+
     display.$mana.text(this.player.mp + ' / ' + this.player.maxmp);
     display.$strength.text(this.player.strength);
     display.$dexterity.text(this.player.dexterity);

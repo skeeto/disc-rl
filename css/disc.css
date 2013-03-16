@@ -249,12 +249,30 @@ span.corrupt {
 .stat .value {
     display: inline-block;
     font-weight: bold;
+    position: relative;
+    padding-left: 5px;
 }
 
-#health {
+.statbar {
+    position: relative;
+    display: inline-block;
+    background: black;
+    width: 170px;
 }
 
-#mana {
+.statfill {
+    position: absolute;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+#experience .statfill {
+    background: #379;
+}
+
+#health .statfill {
+    background: red;
 }
 
 #strength, #dexterity, #mind {

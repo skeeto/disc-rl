@@ -145,8 +145,13 @@ display.minimap = $('#minimap').get(0).getContext('2d');
 display.$name = $('#name');
 display.$level = $('#level');
 display.$dlevel = $('#dlevel');
-display.$experience = $('#experience');
-display.$health = $('#health');
+
+display.$experience = $('#experience .value');
+display.$expfill = $('#experience .statfill');
+
+display.$health = $('#health .value');
+display.$hpfill = $('#health .statfill');
+
 display.$mana = $('#mana');
 display.$strength = $('#strength');
 display.$dexterity = $('#dexterity');
