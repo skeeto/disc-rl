@@ -19,7 +19,6 @@
 .StairUp {
     background: #44f;
 }
-
 .StairUp:after {
     content: '<';
 }
@@ -27,7 +26,18 @@
 .StairDown {
     background: #44f;
 }
-
 .StairDown:after {
     content: '>';
+}
+
+.Tower {
+    background: #44f;
+    color: #000;
+    text-shadow: -4px -4px 12px #f00,
+                  4px -4px 12px #00f,
+                  0px  4px 12px #0f0,
+                  0px  4px 12px #0f0;
+}
+.Tower:after {
+    content: '\25b2';
 }

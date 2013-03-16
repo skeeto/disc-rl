@@ -65,8 +65,11 @@ function Stair(map)  {
 Stair.extend(Place);
 Stair.prototype.map = null;
 
-function StairUp() { Stair.apply(this, arguments); };
+function StairUp() { Stair.apply(this, arguments); }
 StairUp.extend(Stair);
 
-function StairDown() { Stair.apply(this, arguments); };
+function StairDown() { Stair.apply(this, arguments); }
 StairDown.extend(Stair);
+
+function Tower() { Place.apply(this, arguments); }
+Tower.extend(Place);
