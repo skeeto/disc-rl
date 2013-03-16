@@ -9,6 +9,8 @@ function Monster(x, y, name) {
     this.thrown = false;
 }
 
+Monster.prototype.sleepRadius = 10;
+
 Monster.prototype.display = function() {
     if (world.isVisible(this.x, this.y)) {
         display.add(this.x, this.y, this.constructor.name);
@@ -40,6 +42,7 @@ Monster.prototype.tryMove = function(x, y) {
 };
 
 Monster.prototype.damage = function(damage) {
+    this.awake = true;
     this.hp -= damage;
     if (this.hp <= 0) {
         world.remove(this);

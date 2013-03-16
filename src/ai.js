@@ -10,7 +10,7 @@ AI.randomWalk =  function(callback) {
 AI.huntMelee = function(callback) {
     var path = [];
     var player = world.player;
-    if (!this.awake && this.dist(player) > 10) {
+    if (!this.awake && this.dist(player) > this.sleepRadius) {
         callback(); /* Do nothing */
         return;
     } else {
