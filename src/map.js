@@ -124,7 +124,9 @@ Map.prototype.display = function() {
                 } else {
                     ctx.globalAlpha = 0.5;
                 }
-                if (place.solid) {
+                if (place.special) {
+                    ctx.fillStyle = '#f0f';
+                } else if (place.solid) {
                     ctx.fillStyle = place.corrupted ? 'green' : 'blue';
                 } else if (place instanceof Stair) {
                     ctx.fillStyle = 'yellow';

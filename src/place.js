@@ -73,9 +73,12 @@ StairDown.extend(Stair);
 
 function Tower() { Place.apply(this, arguments); }
 Tower.extend(Place);
+Tower.prototype.special = true;
 
 function TowerFloor() { Place.apply(this, arguments); }
 TowerFloor.extend(Place);
+TowerFloor.prototype.special = true;
 
 function TowerBorder() { Place.apply(this, arguments); }
 TowerBorder.extend(Place);
+TowerBorder.prototype.special = true;
