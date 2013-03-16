@@ -126,6 +126,23 @@ Mextend(Browser, {
 });
 Browser.prototype.act = AI.skirmisher;
 
+/* Level 5 */
+
+function Rootkit() { this.init(arguments); }
+Mextend(Rootkit, {
+    level: 5,
+    strength: 2,
+    dexterity: 20
+});
+Rootkit.prototype.act = AI.huntRanged;
+
+function Driver() { this.init(arguments); }
+Mextend(Driver, {
+    level: 5,
+    strength: 24,
+    dexterity: 6
+});
+
 /* Level 10 */
 
 function TowerGuardian() { this.init(arguments); }

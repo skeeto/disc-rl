@@ -70,6 +70,22 @@
     content: 'B';
 }
 
+/* Level 5 */
+
+.Rootkit {
+    color: #ff0;
+}
+.Rootkit:after {
+    content: 'R';
+}
+
+.Driver {
+    color: #ff0;
+}
+.Driver:after {
+    content: 'D';
+}
+
 /* Level 10 */
 
 .TowerGuardian {
