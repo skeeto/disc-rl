@@ -122,6 +122,8 @@ Monster.prototype.ranged = function(target, callback) {
     this.attack(target, 'dexterity');
     this.thrown = true;
     if (callback) {
+        world.look();
+        world.display();
         display.throwDisc(this, target, callback);
     }
 };
