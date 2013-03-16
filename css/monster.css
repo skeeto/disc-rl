@@ -69,3 +69,12 @@
 .Browser:after {
     content: 'B';
 }
+
+/* Level 10 */
+
+.TowerGuardian {
+    color: white;
+}
+.TowerGuardian:after {
+    content: 'T';
+}

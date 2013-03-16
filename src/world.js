@@ -198,8 +198,11 @@ World.prototype.useStairs = function() {
             this.maps[map.id] = map;
             place.map = map.id;
             map.level = this.map.level + 1;
+            if (map.level >= MAX_DEPTH) {
+                map.addTower();
+            }
             var pos = map.random(function(place) {
-                return !(place.solid || place instanceof Stair);
+                return place instanceof Floor;
             });
             var up = new StairUp(this.map.id);
             up.x = this.player.x;
@@ -302,30 +305,4 @@ World.prototype.selectNext = function(reverse) {
     } else {
         return false;
     }
-};
-
-/**
- * Add an I/O tower to a random place on the current map.
- */
-World.prototype.addTower = function() {
-    //var pos = this.map.random(function(place) { return !place.solid; });
-    var pos = {x:this.player.x - 4, y: this.player.y};
-    var x, y;
-    for (x = -2; x <= 2; x++) {
-        for (y = -2; y <= 2; y++) {
-            if (x !== 0 || y !== 0) {
-                this.map.set(pos.x + x, pos.y + y, new TowerBorder());
-            }
-        }
-    }
-    for (x = -1; x <= 1; x++) {
-        for (y = -1; y <= 1; y++) {
-            this.map.set(pos.x + x, pos.y + y, new TowerFloor());
-        }
-    }
-    this.map.set(pos.x + 2, pos.y + 0, new TowerFloor());
-    this.map.set(pos.x - 2, pos.y + 0, new TowerFloor());
-    this.map.set(pos.x + 0, pos.y + 2, new TowerFloor());
-    this.map.set(pos.x + 0, pos.y - 2, new TowerFloor());
-    this.map.set(pos.x, pos.y, new Tower());
 };

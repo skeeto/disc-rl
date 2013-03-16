@@ -125,3 +125,31 @@ Mextend(Browser, {
     dexterity: 18
 });
 Browser.prototype.act = AI.skirmisher;
+
+/* Level 10 */
+
+function TowerGuardian() { this.init(arguments); }
+Mextend(TowerGuardian, {
+    level: 10,
+    strength: 24,
+    dexterity: 26,
+    mind: 30,
+    sleepRadius: 3,
+    spawnable: false
+});
+
+TowerGuardian.prototype.toString = function() {
+    if (this.awake) {
+        return 'a Tower Guardian';
+    } else {
+        return 'a slumbering Tower Guardian';
+    }
+};
+
+TowerGuardian.prototype.act = function(callback) {
+    var awake = this.awake;
+    AI.huntMelee.call(this, callback);
+    if (awake !== this.awake) {
+        important('%s awakes to defend the tower!', this);
+    }
+};

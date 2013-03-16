@@ -144,6 +144,42 @@ Map.prototype.display = function() {
     ctx.fillRect(MINIMAP_RADIUS * s, MINIMAP_RADIUS * s, s, s);
 };
 
+
+/**
+ * Add an I/O tower to a random place on this map.
+ */
+Map.prototype.addTower = function() {
+    var pos = this.random(function(place) {
+        return place instanceof StairDown;
+    }); // replace the stairs
+    if (!pos) {
+        pos = this.random(function(place) { return !place.solid; });
+    }
+    //var pos = {x:this.player.x - 5, y: this.player.y}; // testing
+
+    var x, y;
+    for (x = -2; x <= 2; x++) {
+        for (y = -2; y <= 2; y++) {
+            if (x !== 0 || y !== 0) {
+                this.set(pos.x + x, pos.y + y, new TowerBorder());
+            }
+        }
+    }
+    for (x = -1; x <= 1; x++) {
+        for (y = -1; y <= 1; y++) {
+            if (x !== 0 || y !== 0) {
+                this.set(pos.x + x, pos.y + y, new TowerFloor());
+                this.monsters.push(new TowerGuardian(pos.x + x, pos.y + y));
+            }
+        }
+    }
+    this.set(pos.x + 2, pos.y + 0, new TowerFloor());
+    this.set(pos.x - 2, pos.y + 0, new TowerFloor());
+    this.set(pos.x + 0, pos.y + 2, new TowerFloor());
+    this.set(pos.x + 0, pos.y - 2, new TowerFloor());
+    this.set(pos.x, pos.y, new Tower());
+};
+
 /* Generators */
 
 Map.random = function(seed, w, h) {
