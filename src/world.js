@@ -4,7 +4,7 @@
 
 var WORLD_VERSION = 3;
 var DUNGEON_SIZE = 100;
-var MAX_DEPTH = 10;
+var MAX_DEPTH = 6;
 
 var world = null;
 
