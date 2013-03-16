@@ -72,10 +72,7 @@ Monster.prototype.attack = function(target, base) {
     var roll = d20();
     var basemod = bonus(this[base] + place.modify(base));
     var tdex = bonus(target.dexterity + tplace.modify('dexterity'));
-    var damage = this.weapon.damage() + place.modify('damage');
-    if (base === 'strength') {
-        damage += bonus(this.strength + place.modify('strength'));
-    }
+    var damage = this.weapon.damage() + place.modify('damage') + basemod;
     damage = Math.max(0, damage);
 
     var qualifier = ' ';
