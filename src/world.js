@@ -113,6 +113,13 @@ World.prototype.remove = function(monster) {
  */
 World.prototype.run = function() {
     if (!this.active) return;
+    if (world.map.get(this.player.x, this.player.y) instanceof Tower) {
+        debug(10, 'you win');
+        this.display();
+        this.gameOver();
+        return;
+    }
+
     var all = [this.player].concat(this.map.monsters);
     var wait = Math.max(0, all.reduce(function(max, m) {
         return Math.min(max, m.timer);
@@ -295,4 +302,30 @@ World.prototype.selectNext = function(reverse) {
     } else {
         return false;
     }
+};
+
+/**
+ * Add an I/O tower to a random place on the current map.
+ */
+World.prototype.addTower = function() {
+    //var pos = this.map.random(function(place) { return !place.solid; });
+    var pos = {x:this.player.x - 4, y: this.player.y};
+    var x, y;
+    for (x = -2; x <= 2; x++) {
+        for (y = -2; y <= 2; y++) {
+            if (x !== 0 || y !== 0) {
+                this.map.set(pos.x + x, pos.y + y, new TowerBorder());
+            }
+        }
+    }
+    for (x = -1; x <= 1; x++) {
+        for (y = -1; y <= 1; y++) {
+            this.map.set(pos.x + x, pos.y + y, new TowerFloor());
+        }
+    }
+    this.map.set(pos.x + 2, pos.y + 0, new TowerFloor());
+    this.map.set(pos.x - 2, pos.y + 0, new TowerFloor());
+    this.map.set(pos.x + 0, pos.y + 2, new TowerFloor());
+    this.map.set(pos.x + 0, pos.y - 2, new TowerFloor());
+    this.map.set(pos.x, pos.y, new Tower());
 };

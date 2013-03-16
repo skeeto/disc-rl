@@ -31,7 +31,7 @@
 }
 
 .Tower {
-    background: #44f;
+    background: #707;
     color: #000;
     text-shadow: -4px -4px 12px #f00,
                   4px -4px 12px #00f,
@@ -40,4 +40,22 @@
 }
 .Tower:after {
     content: '\25b2';
+}
+
+.TowerFloor {
+    background: #707;
+    color: #ff0;
+    text-shadow: 0 0 5px yellow, 0 0 5px yellow, 0 0 5px yellow;
+}
+.TowerFloor:after {
+    content: '\26a1';
+}
+
+.TowerBorder {
+    background: #a0a;
+    text-shadow: 0 0 5px #fff, 0 0 5px #fff, 0 0 5px #fff;
+    color: #f0f;
+}
+.TowerBorder:after {
+    content: '\269b';
 }
