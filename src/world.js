@@ -201,6 +201,7 @@ World.prototype.useStairs = function() {
             map.level = this.map.level + 1;
             if (map.level >= MAX_DEPTH) {
                 map.addTower();
+                map.spawnrate = 100;
             }
             var pos = map.random(function(place) {
                 return place instanceof Floor;
