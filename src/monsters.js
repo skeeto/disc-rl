@@ -20,6 +20,7 @@ var Mdefaults = {
     dexterity: 10,
     mind: 10,
     player: false,
+    spawnable: true,
     name: null,
     armor: 0,
     weapon: new Disc()
@@ -45,7 +46,7 @@ Monster.prototype.init = function(args) {
 function Mextend(constructor, props) {
     constructor.extend(Monster);
     $.extend(constructor.prototype, Mdefaults, props || {});
-    if (!constructor.prototype.player) {
+    if (!constructor.prototype.player && constructor.prototype.spawnable) {
         Mindex.add(constructor);
     }
 };
