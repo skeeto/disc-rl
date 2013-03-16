@@ -155,7 +155,7 @@ Map.prototype.addTower = function() {
     if (!pos) {
         pos = this.random(function(place) { return !place.solid; });
     }
-    //var pos = {x:this.player.x - 5, y: this.player.y}; // testing
+    //var pos = {x:world.player.x + 7, y: world.player.y}; // testing
 
     var x, y;
     for (x = -2; x <= 2; x++) {
