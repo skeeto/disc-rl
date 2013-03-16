@@ -161,8 +161,13 @@ display.throwDisc = function(source, dest, callback) {
         }
     }.bind(this);
     var h2 = this.$disc.height() / 2;
-    var a = this.get(source.x, source.y).$tile.position();
-    var b = this.get(dest.x, dest.y).$tile.position();
+
+    var atile = this.get(source.x, source.y);
+    var btile = this.get(dest.x, dest.y);
+    if (!atile || !btile) return complete(); // One is out of view!
+    var a = atile.$tile.position();
+    var b = btile.$tile.position();
+
     this.$disc.css({
         top: (a.top + h2) + 'px',
         left: (a.left + h2) + 'px'
