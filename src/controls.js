@@ -7,6 +7,16 @@ var controls = {
     waitCount: 0
 };
 
+$(window).keydown(function (event) {
+    var code = null;
+    if ([33, 34, 35, 36, 37, 38, 39, 40].indexOf(event.which) != -1) {
+        $.event.trigger({ type : 'keypress', which : event.which });
+        return false;
+    } else {
+        return true;
+    }
+});
+
 $(window).keypress(function(event) {
     switch (event.which) {
     case 'Q'.charCodeAt(0):
@@ -72,34 +82,42 @@ $(window).keypress(function(event) {
     var moved = false;
     switch (event.which) {
     case 'h'.charCodeAt(0):
+    case 37:
         dx = -1;
         dy = 0;
         break;
     case 'j'.charCodeAt(0):
+    case 40:
         dx = 0;
         dy = 1;
         break;
     case 'k'.charCodeAt(0):
+    case 38:
         dx = 0;
         dy = -1;
         break;
     case 'l'.charCodeAt(0):
+    case 39:
         dx = 1;
         dy = 0;
         break;
     case 'y'.charCodeAt(0):
+    case 36:
         dx = -1;
         dy = -1;
         break;
     case 'u'.charCodeAt(0):
+    case 33:
         dx = 1;
         dy = -1;
         break;
     case 'b'.charCodeAt(0):
+    case 35:
         dx = -1;
         dy = 1;
         break;
     case 'n'.charCodeAt(0):
+    case 34:
         dx = 1;
         dy = 1;
         break;
